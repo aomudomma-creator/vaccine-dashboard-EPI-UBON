@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>แดชบอร์ดงานวัคซีน จังหวัดอุบลราชธานี</title>
+<meta name="description" content="ติดตามความครอบคลุมวัคซีน สถานการณ์โรคที่ป้องกันได้ด้วยวัคซีน และคลังความรู้สำหรับเจ้าหน้าที่และผู้ปกครอง โดยงานวัคซีน สสจ.อุบลราชธานี">
+<meta property="og:title" content="แดชบอร์ดงานวัคซีน จังหวัดอุบลราชธานี">
+<meta property="og:description" content="ดูแลสุขภาพทุกช่วงวัย ด้วยวัคซีน ถูกต้อง ครบถ้วน ไม่ตกหล่น">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 4 L56 13 V33 C56 48 46 58 32 62 C18 58 8 48 8 33 V13 Z' fill='%231F7BC1'/%3E%3Crect x='28' y='18' width='8' height='26' rx='2' fill='white'/%3E%3Crect x='19' y='27' width='26' height='8' rx='2' fill='white'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<style>
+:root {
+  --font-anthropic-sans: "Sarabun"; --font-anthropic-serif: "Sarabun";
+  --color-fg: #16324A; --color-fg-muted: #5A7287; --color-bg: #F4F9FD; --color-panel: #FFFFFF; --color-border-line: #DCE8F2;
+  --color-bad: #D64F45; --color-ok: #138A5A; --color-warn: #C98A12;
+  --cds-font-size-title: 1.9rem; --cds-font-size-heading: 1.15rem; --cds-font-size-body: 1rem; --cds-font-size-caption: 0.85rem;
+  --cds-font-weight-medium: 600;
+  --cds-gap-xs: 6px; --cds-gap-sm: 10px; --cds-gap-md: 16px; --cds-gap-lg: 28px;
+  --cds-pad-xs: 4px; --cds-pad-sm: 8px; --cds-pad-md: 12px; --cds-pad-lg: 18px;
+  --cds-radius: 10px; --cds-surface-popover: #FFFFFF; --cds-border: #DCE8F2; --cds-shadow-popover: 0 8px 24px -10px rgba(13,75,120,.35);
+  --cds-text-secondary: #5A7287; --cds-chart-axis: #C7D7E5; --cds-chart-reference: #0D4B78; --cds-chart-status-critical: #E0605A; --cds-dur-slow: .3s;
+}
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: linear-gradient(180deg, #EAF5FD 0, var(--color-bg) 320px); padding: clamp(10px, 3vw, 32px); font-family: "Sarabun", "Noto Sans Thai", "Leelawadee UI", Tahoma, sans-serif; }
+.dash-skeleton { background: linear-gradient(90deg, #EEF5FB 25%, #F8FBFE 50%, #EEF5FB 75%); background-size: 200% 100%; animation: sk 1.4s infinite; border-radius: 10px; }
+@keyframes sk { to { background-position: -200% 0; } }
+.updated { text-align: center; color: var(--color-fg-muted); font-size: .8rem; margin-top: 10px; }
+</style>
+</head>
+<body>
+<script>
+window.dash = (() => {
+  const SRC = {
+    mmr2: 'data/mmr2_ubon_2569.csv', flu: 'data/flu_ubon_2569.csv', flu_groups: 'data/flu_groups.csv', flu_sub: 'data/flu_subunits.csv',
+    polio: 'data/polio_coverage_th.csv', vpd: 'data/vpd_situation.csv', schedule: 'data/schedule.csv', refs: 'data/references.csv', kb: 'data/vaccine_knowledge.json'
+  };
+  const store = {}, calcs = [], draws = new Map();
+  const data = (id) => store[id] || { status: 'loading', data: [] };
+  const draw = (name, fn) => {
+    if (fn) draws.set(name, fn);
+    const f = draws.get(name); if (!f) return;
+    document.querySelectorAll('[data-draw="' + name + '"]').forEach((el) => { try { f(el); } catch (e) { console.error(name, e); } });
+  };
+  const calc = (id, spec) => { calcs.push([id, spec]); };
+  const runCalcs = () => calcs.forEach(([id, s]) => {
+    const ins = s.inputs.map(data);
+    if (ins.every((d) => d.status === 'ok')) { try { store[id] = { status: 'ok', data: s.fn(...ins.map((d) => d.data)) }; } catch (e) { console.error(id, e); store[id] = { status: 'error', data: [] }; } }
+    else if (ins.some((d) => d.status === 'error')) store[id] = { status: 'error', data: [] };
+  });
+  const load = async () => {
+    const v = Date.now();
+    await Promise.all(Object.entries(SRC).map(async ([id, url]) => {
+      try {
+        const r = await fetch(url + '?v=' + v); if (!r.ok) throw new Error(r.status);
+        const t = await r.text();
+        store[id] = { status: 'ok', data: url.endsWith('.json') ? JSON.parse(t) : d3.csvParse(t) };
+      } catch (e) { console.error(url, e); store[id] = { status: 'error', data: [] }; }
+    }));
+    runCalcs();
+    draws.forEach((_, n) => draw(n));
+  };
+  return { data, draw, calc, load, colors: ['#1F7BC1', '#14A3A3', '#5B8DEF'] };
+})();
+</script>
+<style>
+.vx { font-family: var(--font-anthropic-sans), "Sarabun", "Noto Sans Thai", "Leelawadee UI", "Tahoma", sans-serif; color: var(--color-fg); max-width: 1280px; margin-inline: auto; }
+.vx * { box-sizing: border-box; }
+.vx h1 { font-family: var(--font-anthropic-serif), "Sarabun", serif; font-weight: 600; font-size: var(--cds-font-size-title); margin: 0; line-height: 1.25; }
+.vx h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
+.vx h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.vx p { margin: 0; line-height: 1.6; }
+.vx .muted { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.vx .lede { margin-top: var(--cds-gap-xs); max-width: 70ch; }
+.vx .tabs { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); margin: var(--cds-gap-lg) 0; border-bottom: 1px solid var(--color-border-line); }
+.vx .tab { font: inherit; background: none; border: 0; border-bottom: 2px solid transparent; padding: var(--cds-pad-sm) var(--cds-pad-md); color: var(--color-fg-muted); cursor: pointer; }
+.vx .tab[aria-selected="true"] { color: var(--color-fg); border-bottom-color: #1F7BC1; font-weight: var(--cds-font-weight-medium); }
+.vx .grid { display: grid; gap: var(--cds-gap-md); grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
+.vx .tiles { display: grid; gap: var(--cds-gap-md); grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); }
+.vx .card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
+.vx .card + .card, .vx .grid + .card, .vx .card + .grid, .vx .tiles + .grid, .vx .tiles + .card, .vx .grid + .grid { margin-top: var(--cds-gap-md); }
+.vx .tile .big { font-family: var(--font-anthropic-serif), "Sarabun", serif; font-size: var(--cds-font-size-title); font-weight: 600; font-variant-numeric: tabular-nums; display: block; margin: var(--cds-gap-xs) 0; }
+.vx .tile .label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.vx .note { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin-bottom: var(--cds-gap-sm); }
+.vx .chart { position: relative; min-height: 220px; }
+.vx .tip { position: absolute; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); pointer-events: none; white-space: nowrap; z-index: 3; }
+.vx .tip .k { color: var(--cds-text-secondary); }
+.vx .tbl-wrap { max-height: 460px; overflow: auto; }
+.vx table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.vx th, .vx td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+.vx th { position: sticky; top: 0; background: var(--color-panel); font-weight: var(--cds-font-weight-medium); }
+.vx th button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer; color: inherit; }
+.vx td.num, .vx th.num { text-align: right; }
+.vx .bad { color: var(--color-bad); }
+.vx .ok { color: var(--color-ok); }
+.vx .controls { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); align-items: center; margin-bottom: var(--cds-gap-md); }
+.vx input[type="search"], .vx select { font: inherit; padding: 6px 10px; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-bg); color: var(--color-fg); min-width: 12rem; }
+.vx .pill { font: inherit; font-size: var(--cds-font-size-caption); border: 1px solid var(--color-border-line); background: var(--color-bg); color: var(--color-fg); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.vx .pill[aria-pressed="true"] { background: #1F7BC1; border-color: #1F7BC1; color: #fff; }
+.vx .kb-grid { display: grid; gap: var(--cds-gap-md); grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); margin-top: var(--cds-gap-md); }
+.vx .kb .grp { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.vx .kb .sec { margin-top: var(--cds-gap-sm); }
+.vx .kb .sec b { display: block; font-size: var(--cds-font-size-caption); color: var(--kb-c, #1F7BC1); }
+.vx .kb details { margin-top: var(--cds-gap-sm); }
+.vx .kb summary { cursor: pointer; font-size: var(--cds-font-size-caption); color: #1F7BC1; }
+.vx .kb .refs { font-size: 0.75rem; color: var(--color-fg-muted); margin-top: 4px; }
+.vx .vpd .big { font-family: var(--font-anthropic-serif), "Sarabun", serif; font-size: var(--cds-font-size-title); font-weight: 600; display: block; }
+.vx .timeline { display: grid; gap: 8px; }
+.vx .tl-row { display: grid; grid-template-columns: minmax(7rem, 9rem) 1fr; gap: var(--cds-gap-sm); padding: 8px 12px; border-radius: var(--cds-radius); }
+.vx .tl-row .age { font-weight: var(--cds-font-weight-medium); }
+.vx .promo { border-radius: var(--cds-radius); padding: var(--cds-pad-lg); color: #0D4B78; background: #E3F2FC; border: 1px solid #BFE0F6; }
+.vx .promo .head { font-size: var(--cds-font-size-heading); font-weight: 600; color: #0D4B78; margin-bottom: 6px; }
+.vx .promo .body { font-size: var(--cds-font-size-body); line-height: 1.6; }
+.vx .promo .who { margin-top: 8px; font-size: var(--cds-font-size-caption); }
+.vx .action-list td:first-child { font-weight: var(--cds-font-weight-medium); }
+.vx .fail { display: flex; align-items: center; justify-content: center; gap: 6px; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); min-height: inherit; }
+.vx .fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+@media (max-width: 520px) { .vx .tl-row { grid-template-columns: 1fr; } }
+/* ธีมฟ้าการแพทย์ */
+.vx { --sky-50: #F2F9FF; --sky-100: #E3F2FC; --sky-200: #C4E3F7; --sky-300: #93CBEF; --sky-500: #3B9BDB; --sky-600: #1F7BC1; --sky-800: #0D4B78; --mint: #14A3A3; --coral: #E0605A; --soft: #EAF4FB; --soft2: #F3F9FD; }
+.vx h2 { display: flex; align-items: center; gap: 8px; color: var(--color-fg); }
+.vx h2::before { content: ""; width: 4px; height: 1.1em; border-radius: 2px; background: linear-gradient(180deg, var(--sky-500), var(--mint)); flex: none; }
+.vx .hero { position: relative; overflow: hidden; border-radius: 20px; padding: clamp(20px, 3vw, 36px); color: #fff; background: linear-gradient(120deg, #0D4B78 0%, #1F7BC1 45%, #3B9BDB 80%, #5FC3D9 100%); box-shadow: 0 10px 30px -12px rgba(13, 75, 120, .45); }
+.vx .hero::after { content: ""; position: absolute; right: -80px; top: -80px; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,.22), rgba(255,255,255,0) 70%); pointer-events: none; }
+.vx .hero-top { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; position: relative; z-index: 1; }
+.vx .hero .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: var(--cds-font-size-caption); background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.28); padding: 4px 12px; border-radius: 999px; margin-bottom: 10px; }
+.vx .hero h1 { color: #fff; font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem); }
+.vx .hero .lede { color: rgba(255,255,255,.92); margin-top: 10px; }
+.vx .hero .lede b { color: #fff; background: rgba(255,255,255,.18); padding: 0 6px; border-radius: 6px; font-variant-numeric: tabular-nums; }
+.vx .hero-art { width: clamp(90px, 14vw, 150px); height: auto; }
+.vx .life { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; margin-top: 22px; }
+.vx .life .st { background: rgba(255,255,255,.95); color: #0D4B78; border-radius: 14px; padding: 10px 8px 12px; text-align: center; box-shadow: 0 4px 14px -8px rgba(0,0,0,.35); }
+.vx .life svg { width: 44px; height: 44px; display: block; margin: 0 auto 6px; }
+.vx .life .nm { font-weight: var(--cds-font-weight-medium); font-size: var(--cds-font-size-caption); }
+.vx .life .vc { font-size: 0.72rem; color: #3F6E91; line-height: 1.4; margin-top: 2px; }
+@media (max-width: 860px) { .vx .life { grid-template-columns: repeat(4, minmax(0, 1fr)); } .vx .hero-art { display: none; } .vx .hero-top { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .vx .life { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.vx .tabs { border: 0; background: #fff; padding: 6px; border-radius: 14px; gap: 4px; box-shadow: 0 2px 10px -6px rgba(13, 75, 120, .25); }
+.vx .tab { border: 0; border-radius: 10px; padding: 8px 14px; display: inline-flex; align-items: center; gap: 6px; transition: background .15s, color .15s; }
+.vx .tab:hover { background: var(--soft); color: var(--color-fg); }
+.vx .tab[aria-selected="true"] { background: var(--sky-600); color: #fff; box-shadow: 0 4px 12px -6px rgba(31,123,193,.7); }
+.vx .tab .ti { font-size: 1rem; line-height: 1; }
+.vx .card { border-radius: 16px; border-color: #D3E6F4; box-shadow: 0 2px 10px -6px rgba(13, 75, 120, .25); }
+.vx .tile { position: relative; overflow: hidden; }
+.vx .tile::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: var(--tc, var(--sky-600)); }
+.vx .tile .ico { display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: color-mix(in srgb, var(--tc, #1F7BC1) 14%, transparent); font-size: 1.1rem; margin-bottom: 8px; }
+.vx .tile .label { display: block; }
+.vx .tile .big { color: var(--tc, var(--sky-600)); }
+.vx .t-blue { --tc: #1F7BC1; } .vx .t-mint { --tc: #14A3A3; } .vx .t-coral { --tc: #E0605A; } .vx .t-indigo { --tc: #5B6FD8; } .vx .t-sky { --tc: #3B9BDB; }
+.vx .meter { display: block; height: 8px; border-radius: 999px; background: color-mix(in srgb, var(--tc, #1F7BC1) 14%, transparent); margin: 2px 0 8px; overflow: hidden; }
+.vx .meter i { display: block; height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, var(--sky-500), var(--tc, #1F7BC1)); transition: width .6s ease; }
+.vx .meter i.low { background: linear-gradient(90deg, #F2A09A, var(--coral)); }
+.vx table th { background: var(--soft); color: var(--sky-800); }
+.vx tbody tr:nth-child(even) td { background: var(--soft2); }
+.vx tbody tr:hover td { background: var(--soft); }
+.vx .pill[aria-pressed="true"] { background: var(--sky-600); border-color: var(--sky-600); }
+.vx input[type="search"], .vx select { border-radius: 10px; }
+.vx input[type="search"]:focus, .vx select:focus { outline: 2px solid var(--sky-300); outline-offset: 1px; }
+.vx .kb { position: relative; overflow: hidden; padding-top: calc(var(--cds-pad-lg) + 4px); }
+.vx .kb::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 5px; background: var(--kb-c, #1F7BC1); }
+.vx .kb h3 { font-size: 1.05rem; }
+.vx .vpd { border-left: 5px solid var(--sky-500); }
+.vx .vpd .big { color: var(--sky-600); }
+.vx .tl-row { background: var(--soft2); position: relative; padding-left: 28px; }
+.vx .tl-row::before { content: ""; position: absolute; left: 10px; top: 14px; width: 10px; height: 10px; border-radius: 50%; background: var(--sky-500); box-shadow: 0 0 0 3px rgba(59,155,219,.25); }
+.vx .tl-row .age { color: var(--sky-600); }
+.vx .promo { border-radius: 16px; background: linear-gradient(135deg, #E3F2FC, #F2F9FF); color: #0D4B78; }
+.vx .promo.orange { background: linear-gradient(135deg, #DDF4F2, #F1FBFA); border-color: #B7E3DF; color: #0B4F4C; }
+.vx .promo.orange .head { color: #0B6B66; }
+.vx .ins { padding: 10px 12px; border-radius: 12px; background: var(--soft2); margin-top: 8px; line-height: 1.6; }
+.vx .ins b { display: block; color: var(--color-fg); margin-bottom: 2px; }
+.vx .ins span[data-draw] { font-weight: var(--cds-font-weight-medium); color: var(--sky-600); font-variant-numeric: tabular-nums; }
+.vx .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.vx .tbl-wrap table { min-width: 520px; }
+.vx .tbl-wrap table.action-list { min-width: 0; }
+.vx .chart svg { display: block; max-width: 100%; height: auto; }
+.vx .controls input[type="search"] { flex: 1 1 14rem; }
+@media (min-width: 1100px) { .vx .tiles { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+@media (min-width: 601px) and (max-width: 1099px) { .vx .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } .vx .grid { grid-template-columns: 1fr; } }
+@media (max-width: 600px) {
+  .vx .hero { border-radius: 16px; padding: 18px 16px; }
+  .vx .hero .lede { font-size: 0.92rem; }
+  .vx .tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; margin: var(--cds-gap-md) 0; position: sticky; top: 0; z-index: 5; }
+  .vx .tabs::-webkit-scrollbar { display: none; }
+  .vx .tab { white-space: nowrap; scroll-snap-align: start; padding: 8px 12px; font-size: 0.9rem; }
+  .vx .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .vx .tiles .tile:last-child { grid-column: 1 / -1; }
+  .vx .card { padding: 14px; border-radius: 14px; }
+  .vx .tile .big { font-size: 1.6rem; }
+  .vx .grid, .vx .kb-grid { grid-template-columns: 1fr; gap: 12px; }
+  .vx .controls { gap: 8px; }
+  .vx .controls input[type="search"], .vx .controls select { width: 100%; min-width: 0; flex: 1 1 100%; }
+  .vx .tbl-wrap { max-height: none; margin: 0 -14px; padding: 0 14px; }
+  .vx th, .vx td { padding: 6px; }
+  .vx .footer { flex-direction: column; align-items: flex-start; }
+}
+.vx .footer { margin-top: var(--cds-gap-lg); padding: 14px 18px; border-radius: 14px; background: #fff; border: 1px solid #D3E6F4; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; justify-content: space-between; }
+</style>
+<div class="vx" lang="th">
+  <header id="top" class="hero">
+   <div class="hero-top"><div>
+    <p class="eyebrow">🛡️ งานวัคซีน กลุ่มงานควบคุมโรคติดต่อ สสจ.อุบลราชธานี</p>
+    <h1>แดชบอร์ดงานวัคซีน จังหวัดอุบลราชธานี</h1>
+    <p class="lede">ความครอบคลุม MMR2 ของจังหวัดอยู่ที่ร้อยละ <b data-draw="lede-mmr2">—</b> ยังมี <b data-draw="lede-low">—</b> อำเภอที่ต้องเร่งเก็บตกให้ถึงเป้าหมาย ส่วนวัคซีนไข้หวัดใหญ่กลุ่มเสี่ยงฉีดได้ร้อยละ <b data-draw="lede-flu">—</b> ของเป้าหมาย</p>
+   </div>
+    <svg class="hero-art" viewBox="0 0 160 160" aria-hidden="true">
+      <path d="M80 12 L134 32 V78 C134 112 110 136 80 148 C50 136 26 112 26 78 V32 Z" fill="rgba(255,255,255,.18)" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
+      <rect x="70" y="50" width="20" height="56" rx="4" fill="#fff"/><rect x="52" y="68" width="56" height="20" rx="4" fill="#fff"/>
+      <g transform="translate(104 98) rotate(40)"><rect x="-6" y="-30" width="12" height="40" rx="3" fill="#E3F2FC" stroke="#0D4B78" stroke-width="2"/><rect x="-9" y="-36" width="18" height="6" rx="2" fill="#0D4B78"/><line x1="0" y1="10" x2="0" y2="24" stroke="#0D4B78" stroke-width="2.5" stroke-linecap="round"/><rect x="-6" y="-12" width="12" height="20" rx="2" fill="#5FC3D9"/></g>
+    </svg>
+   </div>
+    <div class="life" aria-label="วัคซีนตามช่วงวัย">
+      <div class="st"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#E3F2FC"/><circle cx="24" cy="18" r="7" fill="#FFD9B8"/><path d="M13 36c0-7 5-11 11-11s11 4 11 11z" fill="#93CBEF"/><circle cx="24" cy="11" r="2" fill="#93CBEF"/></svg><div class="nm">แรกเกิด</div><div class="vc">BCG · HB</div></div>
+      <div class="st"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#E3F2FC"/><circle cx="24" cy="17" r="7" fill="#FFD9B8"/><path d="M15 38c0-8 4-13 9-13s9 5 9 13z" fill="#3B9BDB"/><circle cx="18" cy="12" r="3" fill="#6B4A2B"/><circle cx="30" cy="12" r="3" fill="#6B4A2B"/></svg><div class="nm">2 เดือน–1 ปี</div><div class="vc">DTP-HB-Hib · IPV/OPV · Rota · PCV · MMR · JE</div></div>
+      <div class="st"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#E3F2FC"/><circle cx="24" cy="15" r="6" fill="#FFD9B8"/><rect x="17" y="22" width="14" height="15" rx="4" fill="#14A3A3"/><rect x="30" y="23" width="6" height="11" rx="2" fill="#F2B544"/></svg><div class="nm">เด็กเล็ก–วัยเรียน</div><div class="vc">กระตุ้น DTP · OPV · MMR2 · JE</div></div>
+      <div class="st"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#E3F2FC"/><circle cx="24" cy="15" r="6" fill="#FFD9B8"/><path d="M18 12c1-5 11-5 12 0v5h-2v-3c-2-2-6-2-8 0v3h-2z" fill="#3A2A1C"/><path d="M15 39c0-9 4-15 9-15s9 6 9 15z" fill="#5B6FD8"/></svg><div class="nm">วัยรุ่น</div><div class="vc">HPV ป.5 · dT ป.6</div></div>
+      <div class="st"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#E3F2FC"/><circle cx="22" cy="13" r="6" fill="#FFD9B8"/><path d="M16 40V24c0-3 3-5 6-5s5 2 6 4c5 1 7 6 5 11-1 3-4 6-7 6z" fill="#F28CA8"/></svg><div class="nm">หญิงตั้งครรภ์</div><div class="vc">aP/Tdap · dT · ไข้หวัดใหญ่</div></div>
+      <div class="st"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#E3F2FC"/><circle cx="24" cy="14" r="6" fill="#FFD9B8"/><path d="M14 40c0-10 4-17 10-17s10 7 10 17z" fill="#1F7BC1"/><path d="M22 23l2 6 2-6" fill="#fff"/></svg><div class="nm">วัยทำงาน</div><div class="vc">dT ทุก 10 ปี · ไข้หวัดใหญ่</div></div>
+      <div class="st"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#E3F2FC"/><circle cx="22" cy="14" r="6" fill="#FFD9B8"/><path d="M17 11c2-4 8-4 10 0" stroke="#C9CED6" stroke-width="3" fill="none"/><path d="M13 40c0-10 4-16 9-16s9 6 9 16z" fill="#14A3A3"/><path d="M34 26v14" stroke="#6B4A2B" stroke-width="2.5" stroke-linecap="round"/><path d="M34 26c0-3 4-3 4 0" stroke="#6B4A2B" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg><div class="nm">ผู้สูงอายุ / 608</div><div class="vc">ไข้หวัดใหญ่ · โควิด 19</div></div>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="หน้าในแดชบอร์ด">
+    <button class="tab" role="tab" data-tab="overview" aria-selected="true"><span class="ti">📊</span>ภาพรวม</button>
+    <button class="tab" role="tab" data-tab="coverage" aria-selected="false"><span class="ti">💉</span>ความครอบคลุม</button>
+    <button class="tab" role="tab" data-tab="followup" aria-selected="false"><span class="ti">📋</span>ติดตามการดำเนินงาน</button>
+    <button class="tab" role="tab" data-tab="situation" aria-selected="false"><span class="ti">🩺</span>สถานการณ์โรค</button>
+    <button class="tab" role="tab" data-tab="knowledge" aria-selected="false"><span class="ti">📚</span>คลังความรู้วัคซีน</button>
+    <button class="tab" role="tab" data-tab="media" aria-selected="false"><span class="ti">🗓️</span>ตารางวัคซีนและสื่อ</button>
+    <button class="tab" role="tab" data-tab="refs" aria-selected="false"><span class="ti">🔬</span>งานวิจัยและอ้างอิง</button>
+  </nav>
+
+  <section id="overview" class="page">
+    <div class="tiles">
+      <div class="card tile t-blue"><span class="ico">💉</span><span class="label">MMR2 ทั้งจังหวัด ปีงบ 2569</span><span class="big"><span data-draw="t-mmr2">—</span>%</span><span class="meter"><i data-draw="m-mmr2"></i></span><span class="muted">ได้รับ <span data-draw="t-mmr2-v">—</span> จาก <span data-draw="t-mmr2-t">—</span> คน · เป้าหมาย ≥ <span data-draw="goal-mmr2">—</span>%</span></div>
+      <div class="card tile t-coral"><span class="ico">📍</span><span class="label">อำเภอที่ MMR2 ยังไม่ถึงเป้าหมาย</span><span class="big"><span data-draw="t-low">—</span> อำเภอ</span><span class="muted">จากทั้งหมด <span data-draw="t-districts">—</span> อำเภอ</span></div>
+      <div class="card tile t-mint"><span class="ico">🤧</span><span class="label">วัคซีนไข้หวัดใหญ่ 7 กลุ่มเสี่ยง ปี 2569</span><span class="big"><span data-draw="t-flu">—</span>%</span><span class="meter"><i data-draw="m-flu"></i></span><span class="muted">ฉีด <span data-draw="t-flu-v">—</span> โดส จากเป้าหมาย <span data-draw="t-flu-t">—</span></span></div>
+      <div class="card tile t-indigo"><span class="ico">🏥</span><span class="label">หน่วยบริการไข้หวัดใหญ่ต่ำกว่าเป้าหมาย</span><span class="big"><span data-draw="t-flu-low">—</span> แห่ง</span><span class="muted">เกณฑ์ ≥ <span data-draw="goal-flu">—</span>% ของเป้าหมายรายหน่วย</span></div>
+      <div class="card tile t-sky"><span class="ico">🛡️</span><span class="label">ความครอบคลุม OPV3 ระดับประเทศ ล่าสุด</span><span class="big"><span data-draw="t-opv">—</span>%</span><span class="meter"><i data-draw="m-opv"></i></span><span class="muted">ปี 2568 ไตรมาส 1–2 · IPV <span data-draw="t-ipv">—</span>%</span></div>
+    </div>
+    <div class="grid">
+      <div class="card" id="ov-mmr2">
+        <h2>MMR2 รายอำเภอ เรียงจากต่ำไปสูง</h2>
+        <p class="note">เด็กอายุครบ 2 ปีที่ได้ MMR2 · เส้นประคือเป้าหมายร้อยละ <span data-draw="goal-mmr2">—</span> · HDC ณ 24 ต.ค. 2569</p>
+        <div class="chart dash-skeleton" data-draw="ch-mmr2-mini"></div>
+      </div>
+      <div class="card" id="ov-vpd">
+        <h2>สถานการณ์โรคที่ป้องกันได้ด้วยวัคซีน</h2>
+        <p class="note">จำนวนผู้ป่วยสะสมตามช่วงเวลาที่รายงานล่าสุดของแต่ละโรค (มาตราส่วนลอการิทึม)</p>
+        <div class="chart dash-skeleton" data-draw="ch-vpd"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="coverage" class="page" hidden>
+    <div class="grid">
+      <div class="card" id="cov-q">
+        <h2>MMR2 รายไตรมาส ทั้งจังหวัด</h2>
+        <p class="note">ปีงบประมาณ 2569 · เส้นประคือเป้าหมายร้อยละ <span data-draw="goal-mmr2">—</span></p>
+        <div class="chart dash-skeleton" data-draw="ch-mmr2-q"></div>
+      </div>
+      <div class="card" id="cov-polio">
+        <h2>OPV3 และ IPV ระดับประเทศ 2563–2568</h2>
+        <p class="note">ความครอบคลุมร้อยละ · ปี 2568 เป็นข้อมูลไตรมาส 1–2 (กรมควบคุมโรค ณ 5 มิ.ย. 2568) · เส้นประคือเป้าหมายร้อยละ <span data-draw="goal-polio">—</span></p>
+        <div class="chart dash-skeleton" data-draw="ch-polio"></div>
+      </div>
+    </div>
+    <div class="card" id="cov-mmr2-table">
+      <h2>MMR2 รายอำเภอ ปีงบ 2569</h2>
+      <p class="note">กดหัวคอลัมน์เพื่อเรียง · ค้นหาชื่ออำเภอได้ · B = เด็กเป้าหมาย, A = ได้รับวัคซีน</p>
+      <div class="controls"><input type="search" class="lx-mmr2-q" placeholder="ค้นหาอำเภอ" aria-label="ค้นหาอำเภอ"></div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr>
+            <th><button data-sort="district">อำเภอ</button></th>
+            <th class="num"><button data-sort="target">B</button></th>
+            <th class="num"><button data-sort="vaccinated">A</button></th>
+            <th class="num"><button data-sort="coverage">ร้อยละ</button></th>
+            <th class="num"><button data-sort="q1_coverage">ไตรมาส 1</button></th>
+            <th class="num"><button data-sort="q2_coverage">ไตรมาส 2</button></th>
+            <th class="num"><button data-sort="q3_coverage">ไตรมาส 3</button></th>
+            <th class="num"><button data-sort="q4_coverage">ไตรมาส 4</button></th>
+          </tr></thead>
+          <tbody data-draw="tb-mmr2"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card" id="cov-flu">
+      <h2>วัคซีนไข้หวัดใหญ่ 7 กลุ่มเสี่ยง รายหน่วยบริการแม่ข่าย ปี 2569</h2>
+      <p class="note">ร้อยละของเป้าหมายรายหน่วย (สปสช. D2-V11) · เส้นประคือเกณฑ์ร้อยละ <span data-draw="goal-flu">—</span> ตามแนวทางกรมควบคุมโรค · <a href="https://medata.nhso.go.th/me/public/dashboard/41/881" target="_blank" rel="noopener" style="color: var(--sky-600)">ดูข้อมูลล่าสุดที่แดชบอร์ด สปสช. ↗</a></p>
+      <div class="chart dash-skeleton" data-draw="ch-flu"></div>
+    </div>
+    <div class="grid">
+      <div class="card" id="cov-flu-groups">
+        <h2>ไข้หวัดใหญ่ แยกตามกลุ่มเสี่ยง</h2>
+        <p class="note">จำนวนโดสที่ฉีด (V11) ทั้งจังหวัด แยกตามรหัสกลุ่มที่บันทึก · สปสช. ดาวน์โหลด 3 พ.ย. 2569</p>
+        <div class="chart dash-skeleton" data-draw="ch-flu-groups"></div>
+      </div>
+      <div class="card" id="cov-flu-insight">
+        <h2>ประเด็นที่ควรติดตาม</h2>
+        <div class="sec-list">
+          <p class="ins"><b>🩺 ตรวจสอบการบันทึกกลุ่มเสี่ยง</b>บันทึกเป็น "กลุ่มอื่นๆ" ไว้ <span data-draw="ins-g9">—</span> โดส คิดเป็นร้อยละ <span data-draw="ins-g9p">—</span> ของทั้งหมด หน่วยบริการควรทบทวนว่าผู้รับวัคซีนอยู่ในกลุ่มเสี่ยงใด และบันทึกรหัส G1–G7 ให้ถูกต้อง</p>
+          <p class="ins"><b>🤰 หญิงตั้งครรภ์</b>ฉีดได้ <span data-draw="ins-g1">—</span> โดส ควรเสนอวัคซีนในคลินิกฝากครรภ์ทุกครั้งตามแนวทางกรมควบคุมโรค ปี 2569 เพื่อปกป้องทั้งแม่และทารกหลังคลอด</p>
+          <p class="ins"><b>👶 เด็ก 6 เดือน–5 ปี</b>ฉีดได้ <span data-draw="ins-g2">—</span> โดส ควรฉีดพร้อมวัคซีนตามวัยในคลินิกสุขภาพเด็กดี เด็กที่ได้รับครั้งแรกและอายุต่ำกว่า 9 ปีต้องฉีด 2 เข็ม ห่างกัน 4 สัปดาห์</p>
+          <p class="ins"><b>🔒 กลุ่มพิเศษผู้ต้องขัง (V12)</b>ฉีดได้ <span data-draw="ins-v12">—</span> จากเป้าหมาย <span data-draw="ins-v12t">—</span> โดส</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="followup" class="page" hidden>
+    <div class="grid">
+      <div class="card" id="fu-mmr2">
+        <h2>อำเภอที่ต้องเร่งเก็บตก MMR2</h2>
+        <p class="note">อำเภอที่ต่ำกว่าเป้าหมาย พร้อมจำนวนเด็กที่ต้องฉีดเพิ่มเพื่อให้ถึงเป้าหมาย</p>
+        <div class="tbl-wrap">
+          <table class="action-list">
+            <thead><tr><th>อำเภอ</th><th class="num">ร้อยละ</th><th class="num">ต้องฉีดเพิ่ม (คน)</th></tr></thead>
+            <tbody data-draw="tb-mmr2-gap"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card" id="fu-flu">
+        <h2>หน่วยบริการไข้หวัดใหญ่ที่ต่ำกว่าเกณฑ์</h2>
+        <p class="note">หน่วยแม่ข่ายที่ต่ำกว่าเกณฑ์ พร้อมจำนวนโดสที่ต้องฉีดเพิ่ม</p>
+        <div class="tbl-wrap">
+          <table class="action-list">
+            <thead><tr><th>หน่วยบริการ</th><th class="num">ร้อยละ</th><th class="num">ต้องฉีดเพิ่ม (โดส)</th></tr></thead>
+            <tbody data-draw="tb-flu-gap"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="fu-flu-sub">
+      <h2>รพ.สต. และหน่วยบริการที่ฉีดไข้หวัดใหญ่ต่ำกว่าเกณฑ์</h2>
+      <p class="note">ระดับหน่วยบริการ (แม่ข่ายและลูกข่าย) ที่ต่ำกว่าร้อยละ <span data-draw="goal-flu">—</span> ของเป้าหมายรายหน่วย เรียงจากต่ำสุด · พบ <b data-draw="fu-sub-n">—</b> แห่ง · สปสช. ดาวน์โหลด 3 พ.ย. 2569</p>
+      <div class="controls">
+        <select class="lx-sub-net" data-draw="sub-net" aria-label="เลือกเครือข่าย"></select>
+        <input type="search" class="lx-sub-q" placeholder="ค้นหาชื่อ รพ.สต." aria-label="ค้นหาหน่วยบริการ">
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>หน่วยบริการ</th><th>เครือข่าย (แม่ข่าย)</th><th class="num">เป้าหมาย</th><th class="num">ฉีด</th><th class="num">ร้อยละ</th><th class="num">ต้องฉีดเพิ่ม</th></tr></thead>
+          <tbody data-draw="tb-flu-sub"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card" id="fu-guide">
+      <h2>แนวทางติดตามเด็กตกหล่น</h2>
+      <p>1) ดึงรายชื่อเด็กเป้าหมายจาก HDC ที่ยังไม่มีประวัติ MMR2 แยกรายหน่วยบริการ 2) ตรวจสอบสมุดสีชมพูและข้อมูลในแฟ้ม EPI ว่าเป็นการบันทึกไม่ครบหรือยังไม่ได้รับจริง 3) ให้ อสม. ติดตามรายบ้าน และนัดผ่าน LINE OA FollowUp EPI Ubon ซึ่งแจ้งเตือนล่วงหน้า 3 วัน 1 วัน และวันนัด 4) ฉีดเก็บตกพร้อมวัคซีนตามวัยในนัดเดียวกัน ไม่เริ่มชุดใหม่ 5) บันทึกให้ครบใน HIS ภายในวันที่ให้บริการ</p>
+    </div>
+  </section>
+
+  <section id="situation" class="page" hidden>
+    <p class="note">ตัวเลขระดับประเทศจากการแถลงและรายงานของกรมควบคุมโรค ช่วงเวลาของแต่ละโรคต่างกัน อ่านคู่กับวันที่ในแต่ละการ์ด</p>
+    <div class="grid" data-draw="vpd-cards"></div>
+  </section>
+
+  <section id="knowledge" class="page" hidden>
+    <div class="card">
+      <h2>คลังความรู้โรคและวัคซีน</h2>
+      <p class="note">ข้อมูลจากกรมควบคุมโรค สมาคมโรคติดเชื้อในเด็กแห่งประเทศไทย สปสช. และงานวิจัยตีพิมพ์ 2564–2569 เลือกมุมมองสำหรับผู้ปกครองหรือเจ้าหน้าที่</p>
+      <div class="controls">
+        <input type="search" class="lx-kb-q" placeholder="ค้นหาโรค วัคซีน หรืออาการ เช่น PCV ไข้ ผื่น" aria-label="ค้นหาคลังความรู้">
+        <button class="pill lx-aud" data-aud="parent" aria-pressed="true">สำหรับผู้ปกครอง</button>
+        <button class="pill lx-aud" data-aud="staff" aria-pressed="false">สำหรับเจ้าหน้าที่</button>
+      </div>
+      <div class="controls">
+        <button class="pill lx-grp" data-grp="" aria-pressed="true">ทั้งหมด</button>
+        <button class="pill lx-grp" data-grp="วัคซีนพื้นฐานเด็ก (EPI)" aria-pressed="false">วัคซีนพื้นฐานเด็ก</button>
+        <button class="pill lx-grp" data-grp="วัคซีนตามฤดูกาลและกลุ่มเสี่ยง" aria-pressed="false">ตามฤดูกาลและกลุ่มเสี่ยง</button>
+        <button class="pill lx-grp" data-grp="วัคซีนทางเลือก" aria-pressed="false">วัคซีนทางเลือก</button>
+      </div>
+    </div>
+    <div class="kb-grid" data-draw="kb-cards"></div>
+  </section>
+
+  <section id="media" class="page" hidden>
+    <div class="grid">
+      <div class="card" id="sched">
+        <h2>กำหนดการให้วัคซีนตามวัย</h2>
+        <p class="note">วัคซีนพื้นฐานฟรีตามสิทธิ กรมควบคุมโรค ปี 2569–2570</p>
+        <div class="timeline" data-draw="sched"></div>
+      </div>
+      <div>
+        <div class="promo" id="promo-1"><div class="head">ฉีดแยกตำแหน่ง ไม่แยกนัด</div><div class="body">ฉีดหลายเข็มในวันเดียวกันปลอดภัย ไม่ลดผลของวัคซีน ลดจำนวนครั้งที่ต้องพาเด็กมา และลดโอกาสตกหล่น</div></div>
+        <div class="promo orange" id="promo-2" style="margin-top: var(--cds-gap-md)"><div class="head">ดูแลสุขภาพทุกช่วงวัย ด้วยวัคซีน</div><div class="body">ถูกต้อง ครบถ้วน ไม่ตกหล่น นำสมุดสีชมพูมาทุกครั้ง ถ้าพลาดนัด มารับต่อได้เลยไม่ต้องเริ่มใหม่</div></div>
+      </div>
+    </div>
+    <h2 style="margin-top: var(--cds-gap-lg)">การ์ดสื่อสารประชาสัมพันธ์</h2>
+    <p class="note">เนื้อหาดึงจากคลังความรู้ ใช้แคปภาพส่งไลน์หรือพิมพ์ติดบอร์ดได้</p>
+    <div class="grid" data-draw="promo-cards"></div>
+  </section>
+
+  <section id="refs" class="page" hidden>
+    <div class="card">
+      <h2>แหล่งอ้างอิงและงานวิจัย</h2>
+      <p class="note">เอกสารราชการ สมาคมวิชาชีพ องค์การอนามัยโลก และงานวิจัยตีพิมพ์ในวารสารนานาชาติ 2564–2569 ทั้งในไทยและต่างประเทศ</p>
+      <div class="controls">
+        <select class="lx-ref-kind" data-draw="ref-kind" aria-label="ประเภทแหล่งอ้างอิง"></select>
+        <input type="search" class="lx-ref-q" placeholder="ค้นหา เช่น HPV, Thailand, ไอกรน" aria-label="ค้นหาแหล่งอ้างอิง">
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>ประเภท</th><th>แหล่งอ้างอิง</th><th>หัวข้อที่ใช้</th><th>รหัส</th></tr></thead>
+          <tbody data-draw="tb-refs"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer muted"><span>🛡️ ดูแลสุขภาพทุกช่วงวัย ด้วยวัคซีน ถูกต้อง ครบถ้วน ไม่ตกหล่น</span><span>จัดทำโดย งานวัคซีน กลุ่มงานควบคุมโรคติดต่อ สสจ.อุบลราชธานี · PM: นางสาวหัทยา อุดมมา พยาบาลวิชาชีพปฏิบัติการ</span></footer>
+  <p class="updated">ปรับปรุงข้อมูลล่าสุด: 3 พ.ย. 2569 (MMR2: HDC 24 ต.ค. 2569 · ไข้หวัดใหญ่: สปสช. 3 พ.ย. 2569)</p>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

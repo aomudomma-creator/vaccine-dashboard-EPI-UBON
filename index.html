@@ -288,6 +288,7 @@ window.dash = (() => {
 .vx .ev .n { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
 /* One Page */
 .vx .op-tools { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-bottom: 12px; }
+.vx .sendbtn { font: inherit; font-weight: 700; background: var(--sky-600); color: #fff; border: 0; border-radius: 10px; padding: 12px 16px; cursor: pointer; font-size: 1rem; }
 .vx .printbtn { font: inherit; font-weight: 600; background: var(--sky-600); color: #fff; border: 0; border-radius: 10px; padding: 10px 16px; cursor: pointer; }
 .vx .sheet { width: 100%; max-width: 210mm; aspect-ratio: 210 / 297; margin: 0 auto; background: #fff; box-shadow: 0 10px 30px -14px rgba(13,75,120,.45); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; font-size: 14.5px; }
 .vx .op-head { display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; color: #fff; background: linear-gradient(120deg, #0D4B78, #1F7BC1 60%, #3B9BDB); }
@@ -806,6 +807,12 @@ window.dash = (() => {
 .vx .us-g { display: grid; gap: 16px; grid-template-columns: 1fr 1fr; margin-top: 16px; } @media (max-width: 860px) { .vx .us-g { grid-template-columns: 1fr; } }
 .vx .us-g h3 { font-size: 1rem; color: #0D4B78; margin: 0 0 8px; }
 .vx .us-src { font-size: .78rem; color: #46627B; margin-top: 10px; }
+.vx .kbc .big { margin: 2px 16px 0; font-size: 1.6rem; font-weight: 800; color: var(--kc); font-variant-numeric: tabular-nums; line-height: 1.2; }
+.vx .kbc .big small { font-size: .85rem; font-weight: 600; color: #46627B; }
+.vx .kbc .chips2 { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 16px 0; }
+.vx .kbc .chips2 span { font-size: .74rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; background: color-mix(in srgb, var(--kc) 12%, #fff); color: var(--kc); }
+.vx .kbc .mini-bar { margin: 6px 16px 0; width: calc(100% - 32px); height: 8px; border-radius: 999px; background: #EEF4F9; overflow: hidden; }
+.vx .kbc .mini-bar i { display: block; height: 100%; background: var(--kc); border-radius: inherit; }
 .vx .footer { margin-top: var(--cds-gap-lg); padding: 14px 18px; border-radius: 14px; background: #fff; border: 1px solid #D3E6F4; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; justify-content: space-between; }
 /* ===== ธีมการแพทย์ฟ้าสะอาดตา อ่านง่าย ===== */
 .vx { font-size: 16.5px; }
@@ -1175,7 +1182,7 @@ window.dash = (() => {
     <div class="card">
       <h2>🔎 วิเคราะห์การเกิดโรค</h2>
       <p class="note">วิเคราะห์จากข้อมูลสะสมปี 2569 รายอำเภอ: ขนาดปัญหา การกระจายตัว พื้นที่ที่อัตราป่วยสูง และข้อเสนอการดำเนินงาน</p>
-      <div class="an-grid" data-draw="vpd-analysis"></div>
+      <div class="kb-grid" data-draw="vpd-analysis"></div>
       <div class="trend-note"><b>📈 แนวโน้มการเกิดโรค</b><p>ข้อมูลที่ได้รับเป็นยอดสะสมทั้งปี 2569 ยังไม่มีข้อมูลรายเดือนหรือข้อมูลปีก่อนหน้า จึงยังไม่สามารถวิเคราะห์แนวโน้มเพิ่มขึ้นหรือลดลงได้ เมื่อได้ข้อมูลจากระบบเฝ้าระวังแยกรายเดือน (หรือรายสัปดาห์) และข้อมูลปี 2568 จะแสดงกราฟแนวโน้มและเปรียบเทียบกับค่ามัธยฐาน 5 ปีในส่วนนี้</p></div>
     </div>
     <div class="card">
@@ -1233,7 +1240,7 @@ window.dash = (() => {
     </div>
     <h2 style="margin-top: var(--cds-gap-lg)">การ์ดสื่อสารประชาสัมพันธ์</h2>
     <p class="note">เนื้อหาดึงจากคลังความรู้ ใช้แคปภาพส่งไลน์หรือพิมพ์ติดบอร์ดได้</p>
-    <div class="grid" data-draw="promo-cards"></div>
+    <div class="kb-grid" data-draw="promo-cards"></div>
   </section>
 
 
@@ -1266,7 +1273,7 @@ window.dash = (() => {
       <p class="star-t">กดเลือกดาว</p>
       <label class="fb-l">ท่านเป็น<select class="fb-role"><option>เจ้าหน้าที่ รพ.สต.</option><option>เจ้าหน้าที่โรงพยาบาล</option><option>เจ้าหน้าที่ สสอ./สสจ.</option><option>ผู้บริหาร</option><option>ผู้ปกครอง/ประชาชน</option><option>อื่นๆ</option></select></label>
       <label class="fb-l">ข้อเสนอแนะ (ถ้ามี)<textarea class="fb-c" rows="3" placeholder="อยากให้เพิ่มหรือปรับปรุงส่วนใด"></textarea></label>
-      <button type="button" class="printbtn fb-send">ส่งความคิดเห็น</button>
+      <button type="button" class="sendbtn fb-send">ส่งความคิดเห็น</button>
       <p class="fb-msg note"></p>
     </form>
   </dialog>
@@ -1612,11 +1619,14 @@ dash.draw('promo-cards', (el) => {
   if (VX.fail(el, 'kb')) return;
   const keys = ['pcv', 'flu', 'hpv', 'measles', 'pertussis', 'dengue'];
   const by = Object.fromEntries(VX.rows('kb').map((e) => [e.key, e]));
-  el.replaceChildren(...keys.filter((k) => by[k]).map((k, i) => {
-    const e = by[k]; const c = mk('div', 'promo' + (i % 2 ? ' orange' : ''));
-    c.append(mk('div', 'head', e.icon + ' ' + e.name), mk('div', 'body', e.summary), mk('div', 'who', '💉 ' + e.vaccine), mk('div', 'who', '👥 ' + e.who));
+  el.replaceChildren(...keys.filter((k) => by[k]).map((k) => {
+    const e = by[k]; const c = mk('button', 'kbc'); c.type = 'button'; c.style.setProperty('--kc', e.color); c.dataset.key = e.key;
+    const bn = mk('div', 'bn'); bn.append(mk('span', 'em', e.icon), mk('span', 'gp', e.group.replace(' (EPI)', '')));
+    const f = mk('div', 'facts'); [['💉', firstSent(e.vaccine, 7)], ['👥', firstSent(e.who, 6)]].forEach(([i, t]) => { const sp = mk('span'); sp.append(mk('i', '', i), mk('span', '', t)); f.append(sp); });
+    c.append(bn, mk('div', 'nm', e.name), f, mk('div', 'go', 'แตะเพื่ออ่านรายละเอียด →'));
     return c;
   }));
+  NB(el);
 });
 
 // ---- ทำเนียบเกียรติยศ ข่าว ปฏิทิน และ One Page ----
@@ -1856,22 +1866,37 @@ dash.draw('vpd-sum-table', (el) => {
   VX.rows('vpd_ubon_sum').forEach((r) => { const tr = mk('tr'); tr.append(mk('td', '', r.disease), mk('td', '', r.age), mk('td', 'n', VX.int(r.cases)), mk('td', 'n', r.rate.toFixed(2)), mk('td', 'n', String(r.deaths)), mk('td', 'n', r.mrate.toFixed(2)), mk('td', 'n', r.cfr.toFixed(2)), mk('td', 'n', r.spread + '/' + r.ndist)); t.append(tr); });
   el.replaceChildren(t);
 });
+
+VX.openInfo = (o) => {
+  const dlg = document.querySelector('.vx dialog.kbm'); if (!dlg) return;
+  const body = dlg.querySelector('.kbm-body'); dlg.style.setProperty('--kc', o.color);
+  const hd = mk('div', 'kbm-hd'); hd.append(mk('div', 'em', o.icon), mk('h2', '', o.title), mk('p', '', o.sub || ''));
+  const sec = mk('div', 'kbm-sec'); sec.append(...o.items.map(([ic, lb, tx]) => { const it = mk('div', 'it'); const t = mk('div'); t.append(mk('b', '', lb), mk('p', '', tx)); it.append(mk('span', 'ic', ic), t); return it; }));
+  if (o.foot) sec.append(mk('p', 'rf', o.foot));
+  body.replaceChildren(hd, sec); NB(body); dlg.showModal(); dlg.querySelector('.kbm-in').scrollTop = 0; if (o.track) VX.track(o.track, 'view');
+};
 dash.draw('vpd-analysis', (el) => {
   if (!VX.ok('vpd_ubon_sum')) { el.replaceChildren(); return; }
   const R = VX.rows('vpd_ubon_sum').filter((r) => r.cases > 0);
   const rec = { 'ไข้หวัดใหญ่': 'เร่งฉีดวัคซีนไข้หวัดใหญ่ในเด็ก 6 เดือน–5 ปี และกลุ่มเสี่ยงก่อนฤดูระบาด', 'ปอดอักเสบ': 'ติดตามเด็กให้ได้ PCV ครบ 2+1 และวัคซีนไข้หวัดใหญ่ตามกลุ่มอายุ', 'มือ เท้า ปาก': 'เน้นคัดกรองเด็กในศูนย์พัฒนาเด็กเล็กและโรงเรียน ล้างมือ ทำความสะอาดของเล่น', 'ไข้เลือดออก': 'ควบคุมลูกน้ำยุงลายต่อเนื่องในพื้นที่ที่มีอัตราป่วยสูง', 'RSV': 'ให้คำแนะนำผู้ปกครองเรื่องสุขอนามัยและการสังเกตอาการหายใจหอบในทารก', 'สุกใส': 'แยกผู้ป่วยจนแผลตกสะเก็ด และให้ข้อมูลวัคซีนทางเลือก', 'คางทูม': 'ตรวจสอบประวัติ MMR ของผู้ป่วยและเร่งเก็บตก MMR ให้ครบ 2 เข็ม', 'ไอกรน': 'เน้น aP ในหญิงตั้งครรภ์และ DTP ให้ครบตามเกณฑ์' };
+  const ICN = { 'ไข้หวัดใหญ่': '🤧', 'ปอดอักเสบ': '🫁', 'มือ เท้า ปาก': '✋', 'ไข้เลือดออก': '🦟', 'RSV': '👶', 'สุกใส': '🔴', 'คางทูม': '😮‍💨', 'ไอกรน': '😷' };
+  const mxr = d3.max(R, (r) => r.rate) || 1;
   const items = R.map((r) => {
-    const d = mk('div', 'an'); d.style.setProperty('--vc', VCOL[r.disease] || '#1F7BC1');
-    const lines = [
-      'ผู้ป่วย ' + VX.int(r.cases) + ' ราย อัตราป่วย ' + r.rate.toFixed(2) + ' ต่อแสนประชากร ' + (r.deaths ? 'เสียชีวิต ' + r.deaths + ' ราย อัตราป่วยตายร้อยละ ' + r.cfr.toFixed(2) : 'ไม่มีผู้เสียชีวิต'),
-      'พบผู้ป่วยใน ' + r.spread + ' จาก ' + r.ndist + ' อำเภอ' + (r.top3.length ? ' โดย 3 อำเภอที่พบมากที่สุด (' + r.top3.join(', ') + ') รวมกันร้อยละ ' + r.top3share.toFixed(1) + ' ของผู้ป่วยทั้งหมด' : ''),
-      r.hot.length ? 'อำเภอที่อัตราป่วยสูงกว่าค่าจังหวัด 2 เท่าขึ้นไป: ' + r.hot.join(', ') + ' ต่อแสน' : 'ไม่มีอำเภอที่อัตราป่วยสูงกว่าค่าจังหวัด 2 เท่า',
-      '💉 ' + (rec[r.disease] || r.vaccine)
-    ];
-    d.append(mk('b', '', r.disease + ' · ' + r.age), ...lines.map((x) => mk('p', '', x)));
-    return d;
+    const col = VCOL[r.disease] || '#1F7BC1', c = mk('button', 'kbc'); c.type = 'button'; c.style.setProperty('--kc', col);
+    const bn = mk('div', 'bn'); bn.append(mk('span', 'em', ICN[r.disease] || '🩺'), mk('span', 'gp', r.age));
+    const big = mk('div', 'big'); big.append(VX.int(r.cases) + ' ', mk('small', '', 'ราย · ' + r.rate.toFixed(1) + ' ต่อแสน'));
+    const bar = mk('div', 'mini-bar'); const i = mk('i'); i.style.width = (r.rate / mxr * 100) + '%'; bar.append(i);
+    const ch = mk('div', 'chips2'); ch.append(mk('span', '', '📍 พบ ' + r.spread + '/' + r.ndist + ' อำเภอ'), mk('span', '', r.deaths ? '⚠️ เสียชีวิต ' + r.deaths : '✅ ไม่มีผู้เสียชีวิต')); if (r.hot.length) ch.append(mk('span', '', '🔥 พื้นที่เสี่ยง ' + r.hot.length + ' อำเภอ'));
+    c.append(bn, mk('div', 'nm', r.disease), big, bar, ch, mk('div', 'go', 'แตะเพื่ออ่านบทวิเคราะห์ →'));
+    c.onclick = () => VX.openInfo({ color: col, icon: ICN[r.disease] || '🩺', title: 'วิเคราะห์การเกิดโรค: ' + r.disease, sub: r.age + ' · ปี 2569', track: 'an:' + r.disease, items: [
+      ['📊', 'ขนาดของปัญหา', 'ผู้ป่วย ' + VX.int(r.cases) + ' ราย อัตราป่วย ' + r.rate.toFixed(2) + ' ต่อแสนประชากร ' + (r.deaths ? 'เสียชีวิต ' + r.deaths + ' ราย อัตราป่วยตายร้อยละ ' + r.cfr.toFixed(2) : 'ไม่มีผู้เสียชีวิต')],
+      ['🗺️', 'การกระจายตัว', 'พบผู้ป่วยใน ' + r.spread + ' จาก ' + r.ndist + ' อำเภอ' + (r.top3.length ? ' โดย 3 อำเภอที่พบมากที่สุด (' + r.top3.join(', ') + ') รวมกันร้อยละ ' + r.top3share.toFixed(1) + ' ของผู้ป่วยทั้งหมด' : '')],
+      ['🔥', 'พื้นที่ที่อัตราป่วยสูง', r.hot.length ? 'อำเภอที่อัตราป่วยสูงกว่าค่าจังหวัด 2 เท่าขึ้นไป: ' + r.hot.join(', ') + ' ต่อแสน' : 'ไม่มีอำเภอที่อัตราป่วยสูงกว่าค่าจังหวัด 2 เท่า'],
+      ['💉', 'ข้อเสนอการดำเนินงาน', rec[r.disease] || r.vaccine],
+      ['🛡️', 'วัคซีนป้องกัน', r.vaccine]], foot: 'ที่มา: ระบบเฝ้าระวังทางระบาดวิทยา กรมควบคุมโรค ดาวน์โหลด 3 พ.ย. 2569' });
+    return c;
   });
-  el.replaceChildren(...items);
+  el.replaceChildren(...items); NB(el);
 });
 
 // ---- ผลงานรายอำเภอ ----
@@ -2314,7 +2339,7 @@ const LS = { get: () => { try { return JSON.parse(localStorage.getItem('vx-stats
 VX.track = (id, act) => {
   const k = id + '|' + act; VX.counts[k] = (VX.counts[k] || 0) + 1;
   if (!VX.STATS_URL) { const o = LS.get(); o[k] = (o[k] || 0) + 1; LS.set(o); }
-  else { try { fetch(VX.STATS_URL + '?a=hit&id=' + encodeURIComponent(id) + '&act=' + act, { mode: 'no-cors', keepalive: true }).catch(() => {}); } catch (e) {} }
+  else { const im = new Image(); im.src = VX.STATS_URL + '?a=hit&id=' + encodeURIComponent(id) + '&act=' + act + '&t=' + Date.now(); }
   VX.paintStats(document);
   try { drawStatsPanel(); } catch (e) {}
 };
@@ -2324,7 +2349,11 @@ VX.paintStats = (root) => (root || document).querySelectorAll('.vx [data-stat]')
 });
 VX.loadStats = async () => {
   if (!VX.STATS_URL) { Object.assign(VX.counts, LS.get()); }
-  else { try { const r = await fetch(VX.STATS_URL + '?a=stats'); const j = await r.json(); Object.assign(VX.counts, j.counts || {}); VX.rating = j.rating || null; VX.statsLive = true; } catch (e) { Object.assign(VX.counts, LS.get()); } }
+  else {
+    const j = await new Promise((res) => { const cb = 'vxcb' + Date.now(); const sc = document.createElement('script'); const done = (v) => { try { delete window[cb]; } catch (e) {} sc.remove(); res(v); };
+      window[cb] = (d) => done(d); sc.onerror = () => done(null); setTimeout(() => done(null), 8000); sc.src = VX.STATS_URL + '?a=stats&callback=' + cb + '&t=' + Date.now(); document.head.append(sc); });
+    if (j && j.counts) { VX.counts = {}; Object.assign(VX.counts, j.counts); VX.rating = j.rating || null; VX.statsLive = true; } else Object.assign(VX.counts, LS.get());
+  }
   VX.paintStats(document); drawStatsPanel();
 };
 document.addEventListener('click', (ev) => { const t = ev.target.closest('.vx [data-track]'); if (t) VX.track(t.dataset.track, t.dataset.act || 'view'); }, true);
@@ -2381,7 +2410,7 @@ VX.FEEDBACK = { form: '', star: '', role: '', comment: '' }; // ใส่ลิ�
     if (!v) { msg.textContent = 'กรุณาเลือกจำนวนดาวก่อนส่ง'; return; }
     const F = VX.FEEDBACK, role = dlg.querySelector('.fb-role').value, com = dlg.querySelector('.fb-c').value;
     try { localStorage.setItem('vx-rated', String(v)); } catch (e) {}
-    if (VX.STATS_URL) { try { fetch(VX.STATS_URL + '?a=rate&v=' + v + '&role=' + encodeURIComponent(role) + '&c=' + encodeURIComponent(com.slice(0, 500)), { mode: 'no-cors' }).catch(() => {}); } catch (e) {} msg.textContent = 'ขอบคุณสำหรับคะแนน ' + v + ' ดาว ระบบบันทึกความคิดเห็นแล้ว'; setTimeout(() => VX.loadStats(), 2500); return; }
+    if (VX.STATS_URL) { const im = new Image(); im.src = VX.STATS_URL + '?a=rate&v=' + v + '&role=' + encodeURIComponent(role) + '&c=' + encodeURIComponent(com.slice(0, 500)) + '&t=' + Date.now(); msg.textContent = 'ขอบคุณสำหรับคะแนน ' + v + ' ดาว ระบบบันทึกความคิดเห็นแล้ว'; setTimeout(() => VX.loadStats(), 2500); return; }
     if (F.form && F.star) {
       const u = new URL(F.form.replace(/\/viewform.*$/, '/viewform')); u.searchParams.set('usp', 'pp_url'); u.searchParams.set(F.star, String(v)); if (F.role) u.searchParams.set(F.role, role); if (F.comment && com) u.searchParams.set(F.comment, com);
       window.open(u.toString(), '_blank', 'noopener'); msg.textContent = 'ขอบคุณค่ะ ระบบเปิดแบบฟอร์มให้กดส่งเพื่อยืนยันอีกครั้ง';

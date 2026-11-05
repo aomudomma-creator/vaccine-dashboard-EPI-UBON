@@ -2339,7 +2339,7 @@ const LS = { get: () => { try { return JSON.parse(localStorage.getItem('vx-stats
 VX.track = (id, act) => {
   const k = id + '|' + act; VX.counts[k] = (VX.counts[k] || 0) + 1;
   if (!VX.STATS_URL) { const o = LS.get(); o[k] = (o[k] || 0) + 1; LS.set(o); }
-  else { const im = new Image(); im.src = VX.STATS_URL + '?a=hit&id=' + encodeURIComponent(id) + '&act=' + act + '&t=' + Date.now(); }
+  else { const im = new Image(); (VX._bk = VX._bk || []).push(im); im.onload = im.onerror = () => VX._bk.splice(VX._bk.indexOf(im), 1); im.src = VX.STATS_URL + '?a=hit&id=' + encodeURIComponent(id) + '&act=' + act + '&t=' + Date.now(); }
   VX.paintStats(document);
   try { drawStatsPanel(); } catch (e) {}
 };
@@ -2410,7 +2410,20 @@ VX.FEEDBACK = { form: '', star: '', role: '', comment: '' }; // ใส่ลิ�
     if (!v) { msg.textContent = 'กรุณาเลือกจำนวนดาวก่อนส่ง'; return; }
     const F = VX.FEEDBACK, role = dlg.querySelector('.fb-role').value, com = dlg.querySelector('.fb-c').value;
     try { localStorage.setItem('vx-rated', String(v)); } catch (e) {}
-    if (VX.STATS_URL) { const im = new Image(); im.src = VX.STATS_URL + '?a=rate&v=' + v + '&role=' + encodeURIComponent(role) + '&c=' + encodeURIComponent(com.slice(0, 500)) + '&t=' + Date.now(); msg.textContent = 'ขอบคุณสำหรับคะแนน ' + v + ' ดาว ระบบบันทึกความคิดเห็นแล้ว'; setTimeout(() => VX.loadStats(), 2500); return; }
+    if (VX.STATS_URL) {
+      const btn = dlg.querySelector('.fb-send'); btn.disabled = true; msg.textContent = '⏳ กำลังส่งคะแนน...';
+      const n0 = (VX.rating && VX.rating.n) || 0;
+      const url = VX.STATS_URL + '?a=rate&v=' + v + '&role=' + encodeURIComponent(role) + '&c=' + encodeURIComponent(com.slice(0, 300)) + '&t=' + Date.now();
+      // ส่งด้วย iframe ซ่อน (เบราว์เซอร์ส่งคำขอครบแน่นอน) แล้วตรวจยืนยันจากสถิติกลาง
+      const fr = document.createElement('iframe'); fr.style.display = 'none'; fr.src = url; document.body.append(fr); setTimeout(() => fr.remove(), 20000);
+      let tries = 0;
+      const check = async () => {
+        tries++; await VX.loadStats();
+        if (VX.rating && VX.rating.n > n0) { msg.textContent = '✅ บันทึกคะแนน ' + v + ' ดาวเรียบร้อย ขอบคุณค่ะ'; btn.disabled = false; return; }
+        if (tries < 4) setTimeout(check, 2500); else { msg.textContent = '⚠️ ระบบยังไม่ยืนยันการบันทึก กรุณาลองกดส่งอีกครั้ง'; btn.disabled = false; }
+      };
+      setTimeout(check, 2500); return;
+    }
     if (F.form && F.star) {
       const u = new URL(F.form.replace(/\/viewform.*$/, '/viewform')); u.searchParams.set('usp', 'pp_url'); u.searchParams.set(F.star, String(v)); if (F.role) u.searchParams.set(F.role, role); if (F.comment && com) u.searchParams.set(F.comment, com);
       window.open(u.toString(), '_blank', 'noopener'); msg.textContent = 'ขอบคุณค่ะ ระบบเปิดแบบฟอร์มให้กดส่งเพื่อยืนยันอีกครั้ง';

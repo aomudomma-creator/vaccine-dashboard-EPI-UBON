@@ -813,6 +813,14 @@ window.dash = (() => {
 .vx .kbc .chips2 span { font-size: .74rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; background: color-mix(in srgb, var(--kc) 12%, #fff); color: var(--kc); }
 .vx .kbc .mini-bar { margin: 6px 16px 0; width: calc(100% - 32px); height: 8px; border-radius: 999px; background: #EEF4F9; overflow: hidden; }
 .vx .kbc .mini-bar i { display: block; height: 100%; background: var(--kc); border-radius: inherit; }
+.vx .us-fb { display: grid; gap: 8px; }
+.vx .us-fbi { background: #F7FBFE; border: 1px solid #DCEBF7; border-left: 4px solid #E0A422; border-radius: 10px; padding: 8px 12px; }
+.vx .us-fbi .h { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: .8rem; }
+.vx .us-fbi .st { color: #E0A422; letter-spacing: 1px; }
+.vx .us-fbi .rl { color: #46627B; font-weight: 600; }
+.vx .us-fbi .n { margin-left: auto; color: #1F7BC1; font-weight: 700; }
+.vx .us-fbi p { margin: 4px 0 0; color: #17324D; font-size: .92rem; }
+.vx .us-g + .us-g { margin-top: 14px; }
 .vx .footer { margin-top: var(--cds-gap-lg); padding: 14px 18px; border-radius: 14px; background: #fff; border: 1px solid #D3E6F4; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; justify-content: space-between; }
 /* ===== ธีมการแพทย์ฟ้าสะอาดตา อ่านง่าย ===== */
 .vx { font-size: 16.5px; }
@@ -2352,7 +2360,15 @@ VX.loadStats = async () => {
   else {
     const j = await new Promise((res) => { const cb = 'vxcb' + Date.now(); const sc = document.createElement('script'); const done = (v) => { try { delete window[cb]; } catch (e) {} sc.remove(); res(v); };
       window[cb] = (d) => done(d); sc.onerror = () => done(null); setTimeout(() => done(null), 8000); sc.src = VX.STATS_URL + '?a=stats&callback=' + cb + '&t=' + Date.now(); document.head.append(sc); });
-    if (j && j.counts) { VX.counts = {}; Object.assign(VX.counts, j.counts); VX.rating = j.rating || null; VX.statsLive = true; } else Object.assign(VX.counts, LS.get());
+    if (j && j.counts) {
+      VX.counts = {}; let rn = 0, rs = 0;
+      VX.rdist = [0, 0, 0, 0, 0, 0]; VX.fb = [];
+      Object.entries(j.counts).forEach(([k, n]) => {
+        const m = /^rate:(\d)\|/.exec(k); if (m) { rn += n; rs += n * +m[1]; VX.rdist[+m[1]] += n; return; }
+        if (k.startsWith('fb:')) { const t = k.slice(3).replace(/\|view$|\|download$/, '').split(' | '); if (t[2]) VX.fb.push({ star: parseInt(t[0], 10) || 0, role: t[1] || '', text: t.slice(2).join(' | '), n }); return; }
+        VX.counts[k] = n; });
+      VX.rating = rn ? { n: rn, avg: Math.round(rs / rn * 100) / 100 } : (j.rating || null); VX.statsLive = true;
+    } else Object.assign(VX.counts, LS.get());
   }
   VX.paintStats(document); drawStatsPanel();
 };
@@ -2381,7 +2397,17 @@ function drawUsage() {
     return list.length ? L : mk('p', 'note', 'ยังไม่มีข้อมูล'); };
   const tv = items.filter((x) => x[1].view > 0).sort((a, b) => b[1].view - a[1].view), td = items.filter((x) => x[1].download > 0).sort((a, b) => b[1].download - a[1].download);
   const g = mk('div', 'us-g'); const g1 = mk('div'); g1.append(mk('h3', '', '🔥 เปิดดูมากที่สุด'), top(tv, 'view')); const g2 = mk('div'); g2.append(mk('h3', '', '⬇ ดาวน์โหลดมากที่สุด'), top(td, 'download')); g.append(g1, g2);
-  el.replaceChildren(kp, g, mk('p', 'us-src', VX.statsLive ? '✅ สถิติรวมจากผู้ใช้งานทุกคน อัปเดตทุกครั้งที่เปิดหน้า' : 'ℹ️ ขณะนี้แสดงสถิติของเครื่องนี้ (เชื่อมต่อระบบสถิติกลางไม่สำเร็จ)'));
+  const g3 = mk('div', 'us-g');
+  const d1 = mk('div'); d1.append(mk('h3', '', '⭐ ความพึงพอใจ'));
+  if (R && VX.rdist) { const L = mk('div', 'hb-list'); const mx = d3.max(VX.rdist) || 1;
+    [5, 4, 3, 2, 1].forEach((st) => { const r = mk('div', 'hb-row'); const bar = mk('div', 'bar'); const i = mk('i'); i.style.width = (VX.rdist[st] / mx * 100) + '%'; i.style.setProperty('--bc', '#E0A422'); bar.append(i); r.append(mk('span', '', st + ' ดาว'), bar, mk('b', '', VX.int(VX.rdist[st]))); L.append(r); });
+    d1.append(L); } else d1.append(mk('p', 'note', 'ยังไม่มีผู้ให้คะแนน กดปุ่ม "ให้คะแนนแดชบอร์ด" มุมขวาล่าง'));
+  const d2 = mk('div'); d2.append(mk('h3', '', '💬 ความคิดเห็นยอดฮิต'));
+  const fb = (VX.fb || []).slice().sort((a, b) => b.n - a.n || b.star - a.star).slice(0, 5);
+  if (fb.length) { const L = mk('div', 'us-fb'); fb.forEach((f) => { const c = mk('div', 'us-fbi'); const h = mk('div', 'h'); h.append(mk('span', 'st', '★'.repeat(f.star)), mk('span', 'rl', f.role)); if (f.n > 1) h.append(mk('span', 'n', '👍 ' + f.n)); c.append(h, mk('p', '', '“' + f.text + '”')); L.append(c); }); d2.append(L); }
+  else d2.append(mk('p', 'note', 'ยังไม่มีข้อเสนอแนะ'));
+  g3.append(d1, d2);
+  el.replaceChildren(kp, g, g3, mk('p', 'us-src', VX.statsLive ? '✅ สถิติรวมจากผู้ใช้งานทุกคน อัปเดตทุกครั้งที่เปิดหน้า' : 'ℹ️ ขณะนี้แสดงสถิติของเครื่องนี้ (เชื่อมต่อระบบสถิติกลางไม่สำเร็จ)'));
   NB(el);
 }
 function drawStatsPanel() {
@@ -2413,9 +2439,10 @@ VX.FEEDBACK = { form: '', star: '', role: '', comment: '' }; // ใส่ลิ�
     if (VX.STATS_URL) {
       const btn = dlg.querySelector('.fb-send'); btn.disabled = true; msg.textContent = '⏳ กำลังส่งคะแนน...';
       const n0 = (VX.rating && VX.rating.n) || 0;
-      const url = VX.STATS_URL + '?a=rate&v=' + v + '&role=' + encodeURIComponent(role) + '&c=' + encodeURIComponent(com.slice(0, 300)) + '&t=' + Date.now();
-      // ส่งด้วย iframe ซ่อน (เบราว์เซอร์ส่งคำขอครบแน่นอน) แล้วตรวจยืนยันจากสถิติกลาง
-      const fr = document.createElement('iframe'); fr.style.display = 'none'; fr.src = url; document.body.append(fr); setTimeout(() => fr.remove(), 20000);
+      // ส่งคะแนนผ่านช่องทางเดียวกับสถิติการเข้าดู (ใช้งานได้แน่นอนทุกเบราว์เซอร์) ความคิดเห็นถูกบันทึกในแท็บ log
+      const beacon = (q) => { const im = new Image(); (VX._bk = VX._bk || []).push(im); im.src = VX.STATS_URL + q + '&t=' + Date.now() + Math.random(); };
+      beacon('?a=hit&act=view&id=' + encodeURIComponent('rate:' + v));
+      beacon('?a=hit&act=view&id=' + encodeURIComponent(('fb:' + v + ' ดาว | ' + role + (com.trim() ? ' | ' + com.trim() : '')).slice(0, 190)));
       let tries = 0;
       const check = async () => {
         tries++; await VX.loadStats();

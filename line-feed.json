@@ -1,0 +1,388 @@
+{
+ "updated": "2026-11-11",
+ "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/",
+ "privacy": "ข้อมูลสาธารณะระดับภาพรวม ไม่มีข้อมูลส่วนบุคคล",
+ "news": [
+  {
+   "date": "2026-11-09",
+   "tag": "แนวทาง",
+   "title": "ชี้แจงแนวปฏิบัติวัคซีน PCV และสรุปตัวบทกฎหมาย (8 แผ่น)",
+   "body": "ถาม–ตอบประเด็นจากพื้นที่ ตามคำแนะนำกรมควบคุมโรค ต.ค. 2569 พร้อมสรุปประกาศ กก.หลักประกันสุขภาพแห่งชาติ พ.ร.บ.วิชาชีพการพยาบาลฯ…",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:pcv"
+  },
+  {
+   "date": "2026-11-06",
+   "tag": "แนวทาง",
+   "title": "เพิ่มคู่มือและแบบฟอร์ม AEFI ให้ดาวน์โหลด",
+   "body": "คู่มือแนวทางการเฝ้าระวังและตอบโต้ AEFI ของประเทศไทย แบบรายงาน AEFI1 แบบสอบสวน AEFI2 สำหรับกรณีร้ายแรง และเงื่อนไขการออกสอบสวนโรค…",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:aefi"
+  },
+  {
+   "date": "2026-11-06",
+   "tag": "ประชาสัมพันธ์",
+   "title": "เปิดใช้งานระบบรายงาน AEFI-DDC โฉมใหม่ ขอให้ลงทะเบียน",
+   "body": "ผู้รับผิดชอบงานเฝ้าระวัง AEFI ของ รพ. สสอ. และ รพ.สต. ทั้งในและนอกสังกัด สธ. ลงทะเบียนเข้าใช้งานที่ cd-doe.ddc.moph.go.th/maefi/login…",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:aefi"
+  },
+  {
+   "date": "2026-11-06",
+   "tag": "แนวทาง",
+   "title": "ขอความร่วมมือทุกสังกัด เร่งรัดความครอบคลุมวัคซีนพื้นฐาน",
+   "body": "ผลปี 2569 วัคซีน Rota ครบชุด ร้อยละ 77.6, LAJE 2 ปี 6 เดือน ร้อยละ 79.1, DTP และ OPV อายุ 4 ปี ร้อยละ 81.0 และ 81.1 ยังไม่ผ่านเกณฑ์…",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:cov"
+  },
+  {
+   "date": "2026-11-06",
+   "tag": "ประชาสัมพันธ์",
+   "title": "One Page KPI Ranking MMR2 ปีงบประมาณ 2570",
+   "body": "ตัวชี้วัดที่ 23 ความครอบคลุมวัคซีน MMR2 ในเด็กอายุต่ำกว่า 2 ปี ไม่น้อยกว่าร้อยละ 95 พร้อมเกณฑ์คะแนน 1–5 ประเมินรายไตรมาส และผลรายอำเภอปี…",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:kpi"
+  },
+  {
+   "date": "2026-11-06",
+   "tag": "ประชาสัมพันธ์",
+   "title": "แผนงานโครงการพัฒนาคุณภาพงานสร้างเสริมภูมิคุ้มกันโรค ปี 2570",
+   "body": "สรุปวัตถุประสงค์ ตัวชี้วัดความสำเร็จ และแผนการดำเนินงานรายเดือน ต.ค. 2569 – ก.ย. 2570…",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:plan"
+  }
+ ],
+ "guides": [
+  {
+   "short": "คู่มือ AEFI",
+   "title": "แนวทางการเฝ้าระวังและตอบโต้เหตุการณ์ไม่พึงประสงค์ภายหลังได้รับการสร้างเสริมภูมิคุ้มกันโรคของประเทศไทย",
+   "org": "กองระบาดวิทยา กรมควบคุมโรค",
+   "tag": "AEFI",
+   "desc": "นิยาม AEFI การจำแนกความรุนแรง การรายงาน การสอบสวน และการตอบโต้เหตุการณ์ สำหรับหน่วยบริการทุกระดับ",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/aefi-guideline.pdf"
+  },
+  {
+   "short": "เกณฑ์สอบสวนโรค",
+   "title": "เงื่อนไขการออกสอบสวนโรคของทีมปฏิบัติการสอบสวนควบคุมโรค ฉบับปรับปรุง กันยายน 2569",
+   "org": "กรมควบคุมโรค",
+   "tag": "สอบสวนโรค",
+   "desc": "เกณฑ์การออกสอบสวนรายโรค แยกระดับอำเภอ จังหวัด เขต และส่วนกลาง รวมถึงกรณี AEFI",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/investigation-criteria-2569.pdf"
+  },
+  {
+   "short": "PCV เด็กมาล่าช้า",
+   "title": "คำแนะนำการให้บริการวัคซีน PCV และเด็กที่มารับล่าช้า ปี 2570",
+   "org": "กรมควบคุมโรค",
+   "tag": "PCV",
+   "desc": "ตารางฉีด 2+1 และวิธีให้วัคซีนเด็กที่มาช้าหรือได้ไม่ครบ",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-2570-catchup.pdf"
+  },
+  {
+   "short": "แนวทาง PCV 2570",
+   "title": "แนวทางการให้วัคซีน PCV ปีงบประมาณ 2570",
+   "org": "กรมควบคุมโรค",
+   "tag": "PCV",
+   "desc": "กลุ่มเป้าหมาย การบริหารวัคซีน การบันทึกและรายงาน",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-guideline-2570.pdf"
+  },
+  {
+   "short": "แนวทาง HPV 2570",
+   "title": "แนวทางการให้บริการวัคซีน HPV ปีงบประมาณ 2570",
+   "org": "กรมควบคุมโรค",
+   "tag": "HPV",
+   "desc": "นักเรียนหญิง ป.5 วัคซีน 1 เข็ม และการให้บริการในโรงเรียน",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/hpv-guideline-2570.pdf"
+  },
+  {
+   "short": "MR บุคลากร 2569",
+   "title": "แนวทางการให้วัคซีน MR สำหรับบุคลากร ปีงบประมาณ 2569",
+   "org": "กรมควบคุมโรค",
+   "tag": "หัด หัดเยอรมัน",
+   "desc": "การให้วัคซีน MR แก่บุคลากรการแพทย์และนักศึกษา",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/mr-staff-2569.pdf"
+  },
+  {
+   "short": "ยุทธศาสตร์กำจัดหั",
+   "title": "กรอบยุทธศาสตร์การกำจัดโรคหัด หัดเยอรมัน และหัดเยอรมันแต่กำเนิด พ.ศ. 2569–2572",
+   "org": "กรมควบคุมโรค",
+   "tag": "หัด หัดเยอรมัน",
+   "desc": "เป้าหมาย มาตรการ และตัวชี้วัดการกำจัดโรคหัดของประเทศไทย",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/measles-strategy-2569-2572.pdf"
+  },
+  {
+   "short": "HB บุคลากร",
+   "title": "แนวทางการให้วัคซีนป้องกันโรคไวรัสตับอักเสบบีในบุคลากรทางการแพทย์และสาธารณสุข",
+   "org": "กรมควบคุมโรค",
+   "tag": "ตับอักเสบบี",
+   "desc": "การตรวจภูมิคุ้มกันและการให้วัคซีน HB แก่บุคลากร",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/hb-healthcare-workers.pdf"
+  },
+  {
+   "short": "แนวทางคางทูม",
+   "title": "แนวทางการควบคุมและป้องกันโรคคางทูม",
+   "org": "กรมควบคุมโรค",
+   "tag": "คางทูม",
+   "desc": "การเฝ้าระวัง สอบสวน ควบคุมการระบาด และการให้วัคซีน MMR",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/mumps-guideline.pdf"
+  },
+  {
+   "short": "ประเมินเสี่ยงโปลิ",
+   "title": "การประเมินความเสี่ยงโรคโปลิโอ (Self-assessment) ปี 2567",
+   "org": "กรมควบคุมโรค",
+   "tag": "โปลิโอ",
+   "desc": "แบบประเมินตนเองเพื่อลดความเสี่ยงการระบาดของโปลิโอ",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/polio-self-assessment-2567.pdf"
+  },
+  {
+   "short": "แนวทางพิษสุนัขบ้า",
+   "title": "แนวทางการดำเนินงานป้องกันควบคุมโรคพิษสุนัขบ้า",
+   "org": "กรมควบคุมโรค",
+   "tag": "พิษสุนัขบ้า",
+   "desc": "การดูแลผู้สัมผัสโรค การให้วัคซีนและอิมมูโนโกลบูลิน",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/rabies-guideline.pdf"
+  },
+  {
+   "short": "แผนโรคติดต่อ",
+   "title": "แผนปฏิบัติการเฝ้าระวัง ป้องกัน และควบคุมโรคติดต่อหรือโรคระบาด พ.ศ. 2559–2561",
+   "org": "กระทรวงสาธารณสุข",
+   "tag": "แผนงาน",
+   "desc": "กรอบการดำเนินงานตาม พ.ร.บ.โรคติดต่อ พ.ศ. 2558",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/cd-action-plan-2559-2561.pdf"
+  }
+ ],
+ "cov_note": "HDC ปีงบประมาณ 2569 ระดับจังหวัด (ประมวลผล 2 พ.ย. 2569)",
+ "keys": {
+  "tetanus": {
+   "cov": [
+    {
+     "label": "DTP 6 เดือน",
+     "pct": 90.1
+    },
+    {
+     "label": "DTP 1 ปี 6 เดือน",
+     "pct": 95.0
+    },
+    {
+     "label": "DTP 4 ปี",
+     "pct": 81.1
+    }
+   ]
+  },
+  "rota": {
+   "cov": [
+    {
+     "label": "Rota (ครบถ้วนตามเกณฑ์)",
+     "pct": 77.5
+    }
+   ]
+  },
+  "hpv": {
+   "guides": [
+    4
+   ]
+  },
+  "tb": {
+   "cov": [
+    {
+     "label": "BCG แรกเกิด",
+     "pct": 97.6
+    }
+   ]
+  },
+  "pertussis": {
+   "cov": [
+    {
+     "label": "DTP 6 เดือน",
+     "pct": 90.1
+    },
+    {
+     "label": "DTP 1 ปี 6 เดือน",
+     "pct": 95.0
+    },
+    {
+     "label": "DTP 4 ปี",
+     "pct": 81.1
+    }
+   ],
+   "sit": {
+    "cases": "243",
+    "deaths": "2",
+    "period": "ปี 2568 ทั้งปี",
+    "source": "WESR: สถานการณ์โรคไอกรน พ.ศ. 2568"
+   }
+  },
+  "je": {
+   "cov": [
+    {
+     "label": "LAJE/JE 1 ปี",
+     "pct": 91.6
+    },
+    {
+     "label": "LAJE/JE 2 ปี 6 เดือน",
+     "pct": 79.2
+    }
+   ]
+  },
+  "covid": {
+   "sit": {
+    "cases": "99691",
+    "deaths": "15",
+    "period": "1 ม.ค.–31 ส.ค. 2569",
+    "source": "กรมควบคุมโรค แถลง 1 ก.ย. 2569"
+   }
+  },
+  "polio": {
+   "guides": [
+    9
+   ],
+   "cov": [
+    {
+     "label": "IPV 4 เดือน",
+     "pct": 81.5
+    },
+    {
+     "label": "OPV 6 เดือน",
+     "pct": 88.6
+    },
+    {
+     "label": "OPV 4 ปี",
+     "pct": 81.2
+    }
+   ]
+  },
+  "hib": {
+   "cov": [
+    {
+     "label": "Hib 6 เดือน",
+     "pct": 83.6
+    }
+   ]
+  },
+  "dengue": {
+   "sit": {
+    "cases": "21620",
+    "deaths": "31",
+    "period": "1 ม.ค.–19 ส.ค. 2569",
+    "source": "กรมควบคุมโรค แถลง ส.ค. 2569"
+   }
+  },
+  "hepb": {
+   "guides": [
+    7
+   ],
+   "cov": [
+    {
+     "label": "HBV แรกเกิด",
+     "pct": 92.7
+    },
+    {
+     "label": "HBV 6 เดือน",
+     "pct": 90.4
+    }
+   ]
+  },
+  "pcv": {
+   "guides": [
+    2,
+    3
+   ],
+   "info": [
+    {
+     "title": "วัคซีน PCV สรุปในหน้าเดียว",
+     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-01.jpg"
+    },
+    {
+     "title": "รู้จักวัคซีน PCV10 (Pneumosil)",
+     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-02.jpg"
+    },
+    {
+     "title": "ตารางฉีดมาตรฐาน 2p+1 = 3 เข็ม",
+     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-03.jpg"
+    },
+    {
+     "title": "เด็กมาช้า / ไม่ครบ ฉีด PCV อย่างไร",
+     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-04.jpg"
+    }
+   ]
+  },
+  "diphtheria": {
+   "cov": [
+    {
+     "label": "DTP 6 เดือน",
+     "pct": 90.1
+    },
+    {
+     "label": "DTP 1 ปี 6 เดือน",
+     "pct": 95.0
+    },
+    {
+     "label": "DTP 4 ปี",
+     "pct": 81.1
+    }
+   ]
+  },
+  "rsv": {
+   "sit": {
+    "cases": "5683",
+    "deaths": "0",
+    "period": "1 ม.ค.–15 ส.ค. 2569",
+    "source": "WESR ปีที่ 57 ฉบับที่ 8 (ส.ค. 2569)"
+   }
+  },
+  "mumps": {
+   "guides": [
+    8
+   ],
+   "cov": [
+    {
+     "label": "MMR 9 เดือน",
+     "pct": 88.6
+    },
+    {
+     "label": "MMR 1 ปี 6 เดือน",
+     "pct": 97.4
+    }
+   ]
+  },
+  "measles": {
+   "guides": [
+    5,
+    6
+   ],
+   "cov": [
+    {
+     "label": "MMR 9 เดือน",
+     "pct": 88.6
+    },
+    {
+     "label": "MMR 1 ปี 6 เดือน",
+     "pct": 97.4
+    }
+   ],
+   "sit": {
+    "cases": "134",
+    "deaths": "",
+    "period": "ปี 2569 ถึงต้น ต.ค.",
+    "source": "กระทรวงสาธารณสุข (ข่าว 7 ต.ค. 2569)"
+   }
+  },
+  "rubella": {
+   "guides": [
+    5,
+    6
+   ],
+   "cov": [
+    {
+     "label": "MMR 9 เดือน",
+     "pct": 88.6
+    },
+    {
+     "label": "MMR 1 ปี 6 เดือน",
+     "pct": 97.4
+    }
+   ]
+  },
+  "flu": {
+   "sit": {
+    "cases": "137276",
+    "deaths": "8",
+    "period": "1 ม.ค.–9 มี.ค. 2569",
+    "source": "กองระบาดวิทยา (DDS) แถลง 11 มี.ค. 2569"
+   }
+  }
+ }
+}

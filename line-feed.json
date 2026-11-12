@@ -6,6 +6,13 @@
   {
    "date": "2026-11-12",
    "tag": "ประชาสัมพันธ์",
+   "title": "อินโฟกราฟิก รู้จักวัคซีน PCV สำหรับผู้ปกครอง",
+   "body": "ข้อดีของการฉีด ข้อควรรู้ ตารางฉีด 3 ครั้งในนัดเดิม ความเข้าใจผิดที่พบบ่อย และการดูแลหลังฉีด ใช้ประชาสัมพันธ์ผู้ปกครองได้ทันที",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:pcvin"
+  },
+  {
+   "date": "2026-11-12",
+   "tag": "ประชาสัมพันธ์",
    "title": "ชวนพาลูกรับวัคซีน PCV เด็กอายุ 2–23 เดือน ฟรีใกล้บ้าน",
    "body": "เชิญชวนผู้ปกครองพาบุตรหลานรับวัคซีน PCV ที่หน่วยบริการของรัฐใกล้บ้าน กลุ่มที่ 1 เด็กเกิดตั้งแต่ 1 ต.ค. 2569 ฉีดตามนัด 2 4 และ 12 เดือน…",
    "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:pcvin"
@@ -36,13 +43,6 @@
    "tag": "แนวทาง",
    "title": "เพิ่มคู่มือและแบบฟอร์ม AEFI ให้ดาวน์โหลด",
    "body": "คู่มือแนวทางการเฝ้าระวังและตอบโต้ AEFI ของประเทศไทย แบบรายงาน AEFI1 แบบสอบสวน AEFI2 สำหรับกรณีร้ายแรง และเงื่อนไขการออกสอบสวนโรค…",
-   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:aefi"
-  },
-  {
-   "date": "2026-11-06",
-   "tag": "ประชาสัมพันธ์",
-   "title": "เปิดใช้งานระบบรายงาน AEFI-DDC โฉมใหม่ ขอให้ลงทะเบียน",
-   "body": "ผู้รับผิดชอบงานเฝ้าระวัง AEFI ของ รพ. สสอ. และ รพ.สต. ทั้งในและนอกสังกัด สธ. ลงทะเบียนเข้าใช้งานที่ cd-doe.ddc.moph.go.th/maefi/login…",
    "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:aefi"
   }
  ],
@@ -146,6 +146,22 @@
  ],
  "cov_note": "HDC ปีงบประมาณ 2569 ระดับจังหวัด (ประมวลผล 2 พ.ย. 2569)",
  "keys": {
+  "rubella": {
+   "guides": [
+    5,
+    6
+   ],
+   "cov": [
+    {
+     "label": "MMR 9 เดือน",
+     "pct": 88.6
+    },
+    {
+     "label": "MMR 1 ปี 6 เดือน",
+     "pct": 97.4
+    }
+   ]
+  },
   "covid": {
    "sit": {
     "cases": "99691",
@@ -153,6 +169,62 @@
     "period": "1 ม.ค.–31 ส.ค. 2569",
     "source": "กรมควบคุมโรค แถลง 1 ก.ย. 2569"
    }
+  },
+  "flu": {
+   "sit": {
+    "cases": "137276",
+    "deaths": "8",
+    "period": "1 ม.ค.–9 มี.ค. 2569",
+    "source": "กองระบาดวิทยา (DDS) แถลง 11 มี.ค. 2569"
+   }
+  },
+  "pcv": {
+   "guides": [
+    2,
+    3
+   ],
+   "info": [
+    {
+     "title": "วัคซีน PCV สรุปในหน้าเดียว",
+     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-01.jpg"
+    },
+    {
+     "title": "รู้จักวัคซีน PCV10 (Pneumosil)",
+     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-02.jpg"
+    },
+    {
+     "title": "ตารางฉีดมาตรฐาน 2p+1 = 3 เข็ม",
+     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-03.jpg"
+    },
+    {
+     "title": "เด็กมาช้า / ไม่ครบ ฉีด PCV อย่างไร",
+     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-04.jpg"
+    }
+   ]
+  },
+  "diphtheria": {
+   "cov": [
+    {
+     "label": "DTP 6 เดือน",
+     "pct": 90.1
+    },
+    {
+     "label": "DTP 1 ปี 6 เดือน",
+     "pct": 95.0
+    },
+    {
+     "label": "DTP 4 ปี",
+     "pct": 81.1
+    }
+   ]
+  },
+  "tb": {
+   "cov": [
+    {
+     "label": "BCG แรกเกิด",
+     "pct": 97.6
+    }
+   ]
   },
   "pertussis": {
    "cov": [
@@ -192,6 +264,77 @@
     }
    ]
   },
+  "mumps": {
+   "guides": [
+    8
+   ],
+   "cov": [
+    {
+     "label": "MMR 9 เดือน",
+     "pct": 88.6
+    },
+    {
+     "label": "MMR 1 ปี 6 เดือน",
+     "pct": 97.4
+    }
+   ]
+  },
+  "dengue": {
+   "sit": {
+    "cases": "21620",
+    "deaths": "31",
+    "period": "1 ม.ค.–19 ส.ค. 2569",
+    "source": "กรมควบคุมโรค แถลง ส.ค. 2569"
+   }
+  },
+  "hpv": {
+   "guides": [
+    4
+   ]
+  },
+  "rota": {
+   "cov": [
+    {
+     "label": "Rota (ครบถ้วนตามเกณฑ์)",
+     "pct": 77.5
+    }
+   ]
+  },
+  "hepb": {
+   "guides": [
+    7
+   ],
+   "cov": [
+    {
+     "label": "HBV แรกเกิด",
+     "pct": 92.7
+    },
+    {
+     "label": "HBV 6 เดือน",
+     "pct": 90.4
+    }
+   ]
+  },
+  "hib": {
+   "cov": [
+    {
+     "label": "Hib 6 เดือน",
+     "pct": 83.6
+    }
+   ]
+  },
+  "je": {
+   "cov": [
+    {
+     "label": "LAJE/JE 1 ปี",
+     "pct": 91.6
+    },
+    {
+     "label": "LAJE/JE 2 ปี 6 เดือน",
+     "pct": 79.2
+    }
+   ]
+  },
   "measles": {
    "guides": [
     5,
@@ -214,51 +357,12 @@
     "source": "กระทรวงสาธารณสุข (ข่าว 7 ต.ค. 2569)"
    }
   },
-  "hib": {
-   "cov": [
-    {
-     "label": "Hib 6 เดือน",
-     "pct": 83.6
-    }
-   ]
-  },
-  "rota": {
-   "cov": [
-    {
-     "label": "Rota (ครบถ้วนตามเกณฑ์)",
-     "pct": 77.5
-    }
-   ]
-  },
-  "tb": {
-   "cov": [
-    {
-     "label": "BCG แรกเกิด",
-     "pct": 97.6
-    }
-   ]
-  },
-  "hepb": {
-   "guides": [
-    7
-   ],
-   "cov": [
-    {
-     "label": "HBV แรกเกิด",
-     "pct": 92.7
-    },
-    {
-     "label": "HBV 6 เดือน",
-     "pct": 90.4
-    }
-   ]
-  },
-  "dengue": {
+  "rsv": {
    "sit": {
-    "cases": "21620",
-    "deaths": "31",
-    "period": "1 ม.ค.–19 ส.ค. 2569",
-    "source": "กรมควบคุมโรค แถลง ส.ค. 2569"
+    "cases": "5683",
+    "deaths": "0",
+    "period": "1 ม.ค.–15 ส.ค. 2569",
+    "source": "WESR ปีที่ 57 ฉบับที่ 8 (ส.ค. 2569)"
    }
   },
   "polio": {
@@ -278,110 +382,6 @@
      "label": "OPV 4 ปี",
      "pct": 81.2
     }
-   ]
-  },
-  "mumps": {
-   "guides": [
-    8
-   ],
-   "cov": [
-    {
-     "label": "MMR 9 เดือน",
-     "pct": 88.6
-    },
-    {
-     "label": "MMR 1 ปี 6 เดือน",
-     "pct": 97.4
-    }
-   ]
-  },
-  "pcv": {
-   "guides": [
-    2,
-    3
-   ],
-   "info": [
-    {
-     "title": "วัคซีน PCV สรุปในหน้าเดียว",
-     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-01.jpg"
-    },
-    {
-     "title": "รู้จักวัคซีน PCV10 (Pneumosil)",
-     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-02.jpg"
-    },
-    {
-     "title": "ตารางฉีดมาตรฐาน 2p+1 = 3 เข็ม",
-     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-03.jpg"
-    },
-    {
-     "title": "เด็กมาช้า / ไม่ครบ ฉีด PCV อย่างไร",
-     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-04.jpg"
-    }
-   ]
-  },
-  "flu": {
-   "sit": {
-    "cases": "137276",
-    "deaths": "8",
-    "period": "1 ม.ค.–9 มี.ค. 2569",
-    "source": "กองระบาดวิทยา (DDS) แถลง 11 มี.ค. 2569"
-   }
-  },
-  "rsv": {
-   "sit": {
-    "cases": "5683",
-    "deaths": "0",
-    "period": "1 ม.ค.–15 ส.ค. 2569",
-    "source": "WESR ปีที่ 57 ฉบับที่ 8 (ส.ค. 2569)"
-   }
-  },
-  "rubella": {
-   "guides": [
-    5,
-    6
-   ],
-   "cov": [
-    {
-     "label": "MMR 9 เดือน",
-     "pct": 88.6
-    },
-    {
-     "label": "MMR 1 ปี 6 เดือน",
-     "pct": 97.4
-    }
-   ]
-  },
-  "je": {
-   "cov": [
-    {
-     "label": "LAJE/JE 1 ปี",
-     "pct": 91.6
-    },
-    {
-     "label": "LAJE/JE 2 ปี 6 เดือน",
-     "pct": 79.2
-    }
-   ]
-  },
-  "diphtheria": {
-   "cov": [
-    {
-     "label": "DTP 6 เดือน",
-     "pct": 90.1
-    },
-    {
-     "label": "DTP 1 ปี 6 เดือน",
-     "pct": 95.0
-    },
-    {
-     "label": "DTP 4 ปี",
-     "pct": 81.1
-    }
-   ]
-  },
-  "hpv": {
-   "guides": [
-    4
    ]
   }
  }

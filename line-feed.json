@@ -1,8 +1,22 @@
 {
- "updated": "2026-11-12",
+ "updated": "2026-11-13",
  "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/",
  "privacy": "ข้อมูลสาธารณะระดับภาพรวม ไม่มีข้อมูลส่วนบุคคล",
  "news": [
+  {
+   "date": "2026-11-13",
+   "tag": "ประชาสัมพันธ์",
+   "title": "อินโฟกราฟิก เด็กไทยเกิดตั้งแต่ 1 ต.ค. 2568 รับวัคซีน PCV ได้แล้ววันนี้",
+   "body": "เด็กอายุไม่เกิน 2 ปี รับวัคซีน PCV ฟรี ที่ รพ.สต. และโรงพยาบาลของรัฐใกล้บ้าน ป้องกันปอดอักเสบ เยื่อหุ้มสมองอักเสบ…",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:info"
+  },
+  {
+   "date": "2026-11-13",
+   "tag": "แนวทาง",
+   "title": "เร่งรัดการให้บริการวัคซีนพื้นฐาน และกำกับติดตามความครอบคลุม ในเด็กก่อนวัยเรียน",
+   "body": "ขอความร่วมมือทุกหน่วยงานเร่งรัดวัคซีนที่ยังไม่ผ่านเกณฑ์ ติดตามเด็กกลุ่มเป้าหมาย บันทึกและตรวจสอบข้อมูลในระบบ HDC และประสาน รพ.สต. ในสังกัด",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:info"
+  },
   {
    "date": "2026-11-12",
    "tag": "ประชาสัมพันธ์",
@@ -30,20 +44,6 @@
    "title": "คู่มือตั้งค่ารหัสวัคซีน PCV ในโปรแกรม JHCIS สำหรับ รพ.สต.",
    "body": "ขั้นตอนเปิดใช้รหัส P21–P24 ในเมนูรหัสยา-เวชภัณฑ์ และวิธีบันทึกในแท็บโภชนาการ & วัคซีน พร้อมภาพหน้าจอจริง เพื่อให้ส่งออก 43 แฟ้ม และ HDC…",
    "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:jhcis"
-  },
-  {
-   "date": "2026-11-09",
-   "tag": "แนวทาง",
-   "title": "ชี้แจงแนวปฏิบัติวัคซีน PCV และสรุปตัวบทกฎหมาย (8 แผ่น)",
-   "body": "ถาม–ตอบประเด็นจากพื้นที่ ตามคำแนะนำกรมควบคุมโรค ต.ค. 2569 พร้อมสรุปประกาศ กก.หลักประกันสุขภาพแห่งชาติ พ.ร.บ.วิชาชีพการพยาบาลฯ…",
-   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:pcv"
-  },
-  {
-   "date": "2026-11-06",
-   "tag": "แนวทาง",
-   "title": "เพิ่มคู่มือและแบบฟอร์ม AEFI ให้ดาวน์โหลด",
-   "body": "คู่มือแนวทางการเฝ้าระวังและตอบโต้ AEFI ของประเทศไทย แบบรายงาน AEFI1 แบบสอบสวน AEFI2 สำหรับกรณีร้ายแรง และเงื่อนไขการออกสอบสวนโรค…",
-   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:aefi"
   }
  ],
  "guides": [
@@ -146,21 +146,13 @@
  ],
  "cov_note": "HDC ปีงบประมาณ 2569 ระดับจังหวัด (ประมวลผล 2 พ.ย. 2569)",
  "keys": {
-  "rubella": {
-   "guides": [
-    5,
-    6
-   ],
-   "cov": [
-    {
-     "label": "MMR 9 เดือน",
-     "pct": 88.6
-    },
-    {
-     "label": "MMR 1 ปี 6 เดือน",
-     "pct": 97.4
-    }
-   ]
+  "flu": {
+   "sit": {
+    "cases": "137276",
+    "deaths": "8",
+    "period": "1 ม.ค.–9 มี.ค. 2569",
+    "source": "กองระบาดวิทยา (DDS) แถลง 11 มี.ค. 2569"
+   }
   },
   "covid": {
    "sit": {
@@ -170,35 +162,46 @@
     "source": "กรมควบคุมโรค แถลง 1 ก.ย. 2569"
    }
   },
-  "flu": {
+  "tetanus": {
+   "cov": [
+    {
+     "label": "DTP 6 เดือน",
+     "pct": 90.1
+    },
+    {
+     "label": "DTP 1 ปี 6 เดือน",
+     "pct": 95.0
+    },
+    {
+     "label": "DTP 4 ปี",
+     "pct": 81.1
+    }
+   ]
+  },
+  "dengue": {
    "sit": {
-    "cases": "137276",
-    "deaths": "8",
-    "period": "1 ม.ค.–9 มี.ค. 2569",
-    "source": "กองระบาดวิทยา (DDS) แถลง 11 มี.ค. 2569"
+    "cases": "21620",
+    "deaths": "31",
+    "period": "1 ม.ค.–19 ส.ค. 2569",
+    "source": "กรมควบคุมโรค แถลง ส.ค. 2569"
    }
   },
-  "pcv": {
+  "polio": {
    "guides": [
-    2,
-    3
+    9
    ],
-   "info": [
+   "cov": [
     {
-     "title": "วัคซีน PCV สรุปในหน้าเดียว",
-     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-01.jpg"
+     "label": "IPV 4 เดือน",
+     "pct": 81.5
     },
     {
-     "title": "รู้จักวัคซีน PCV10 (Pneumosil)",
-     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-02.jpg"
+     "label": "OPV 6 เดือน",
+     "pct": 88.6
     },
     {
-     "title": "ตารางฉีดมาตรฐาน 2p+1 = 3 เข็ม",
-     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-03.jpg"
-    },
-    {
-     "title": "เด็กมาช้า / ไม่ครบ ฉีด PCV อย่างไร",
-     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-04.jpg"
+     "label": "OPV 4 ปี",
+     "pct": 81.2
     }
    ]
   },
@@ -218,11 +221,26 @@
     }
    ]
   },
-  "tb": {
+  "hib": {
    "cov": [
     {
-     "label": "BCG แรกเกิด",
-     "pct": 97.6
+     "label": "Hib 6 เดือน",
+     "pct": 83.6
+    }
+   ]
+  },
+  "mumps": {
+   "guides": [
+    8
+   ],
+   "cov": [
+    {
+     "label": "MMR 9 เดือน",
+     "pct": 88.6
+    },
+    {
+     "label": "MMR 1 ปี 6 เดือน",
+     "pct": 97.4
     }
    ]
   },
@@ -248,25 +266,10 @@
     "source": "WESR: สถานการณ์โรคไอกรน พ.ศ. 2568"
    }
   },
-  "tetanus": {
-   "cov": [
-    {
-     "label": "DTP 6 เดือน",
-     "pct": 90.1
-    },
-    {
-     "label": "DTP 1 ปี 6 เดือน",
-     "pct": 95.0
-    },
-    {
-     "label": "DTP 4 ปี",
-     "pct": 81.1
-    }
-   ]
-  },
-  "mumps": {
+  "rubella": {
    "guides": [
-    8
+    5,
+    6
    ],
    "cov": [
     {
@@ -279,24 +282,27 @@
     }
    ]
   },
-  "dengue": {
-   "sit": {
-    "cases": "21620",
-    "deaths": "31",
-    "period": "1 ม.ค.–19 ส.ค. 2569",
-    "source": "กรมควบคุมโรค แถลง ส.ค. 2569"
-   }
-  },
-  "hpv": {
+  "pcv": {
    "guides": [
-    4
-   ]
-  },
-  "rota": {
-   "cov": [
+    2,
+    3
+   ],
+   "info": [
     {
-     "label": "Rota (ครบถ้วนตามเกณฑ์)",
-     "pct": 77.5
+     "title": "วัคซีน PCV สรุปในหน้าเดียว",
+     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-01.jpg"
+    },
+    {
+     "title": "รู้จักวัคซีน PCV10 (Pneumosil)",
+     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-02.jpg"
+    },
+    {
+     "title": "ตารางฉีดมาตรฐาน 2p+1 = 3 เข็ม",
+     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-03.jpg"
+    },
+    {
+     "title": "เด็กมาช้า / ไม่ครบ ฉีด PCV อย่างไร",
+     "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/pcv-04.jpg"
     }
    ]
   },
@@ -315,11 +321,19 @@
     }
    ]
   },
-  "hib": {
+  "rota": {
    "cov": [
     {
-     "label": "Hib 6 เดือน",
-     "pct": 83.6
+     "label": "Rota (ครบถ้วนตามเกณฑ์)",
+     "pct": 77.5
+    }
+   ]
+  },
+  "tb": {
+   "cov": [
+    {
+     "label": "BCG แรกเกิด",
+     "pct": 97.6
     }
    ]
   },
@@ -365,23 +379,9 @@
     "source": "WESR ปีที่ 57 ฉบับที่ 8 (ส.ค. 2569)"
    }
   },
-  "polio": {
+  "hpv": {
    "guides": [
-    9
-   ],
-   "cov": [
-    {
-     "label": "IPV 4 เดือน",
-     "pct": 81.5
-    },
-    {
-     "label": "OPV 6 เดือน",
-     "pct": 88.6
-    },
-    {
-     "label": "OPV 4 ปี",
-     "pct": 81.2
-    }
+    4
    ]
   }
  }

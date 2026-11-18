@@ -5,6 +5,13 @@
  "news": [
   {
    "date": "2026-11-18",
+   "tag": "ผลงาน",
+   "title": "ข่าวกิจกรรม รพ.ม่วงสามสิบ ประชุมชี้แจงแนวทางการให้บริการวัคซีน PCV",
+   "body": "โรงพยาบาลม่วงสามสิบ จัดประชุมชี้แจงแนวทางการให้บริการวัคซีน PCV ผ่าน Google Meet มีเครือข่าย รพ.สต. อำเภอม่วงสามสิบ กุดข้าวปุ้น…",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:act"
+  },
+  {
+   "date": "2026-11-18",
    "tag": "สื่อ",
    "title": "คลิปอนิเมชันความรู้วัคซีน 4 เรื่อง วัคซีนทุกวัย PCV ไลน์ Follow Up และการใช้แดชบอร์ด",
    "body": "คลิปอนิเมชันสำหรับเปิดในคลินิกวัคซีนและส่งต่อในกลุ่มไลน์ ได้แก่ วัคซีนทุกวัยฟรีสำหรับคนไทย วัคซีน PCV สำหรับผู้ปกครอง แนะนำการใช้ไลน์…",
@@ -36,13 +43,6 @@
    "tag": "ประชาสัมพันธ์",
    "title": "อินโฟกราฟิก เด็กไทยเกิดตั้งแต่ 1 ต.ค. 2568 รับวัคซีน PCV ได้แล้ววันนี้",
    "body": "เด็กอายุไม่เกิน 2 ปี รับวัคซีน PCV ฟรี ที่ รพ.สต. และโรงพยาบาลของรัฐใกล้บ้าน ป้องกันปอดอักเสบ เยื่อหุ้มสมองอักเสบ…",
-   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:info"
-  },
-  {
-   "date": "2026-11-13",
-   "tag": "แนวทาง",
-   "title": "เร่งรัดการให้บริการวัคซีนพื้นฐาน และกำกับติดตามความครอบคลุม ในเด็กก่อนวัยเรียน",
-   "body": "ขอความร่วมมือทุกหน่วยงานเร่งรัดวัคซีนที่ยังไม่ผ่านเกณฑ์ ติดตามเด็กกลุ่มเป้าหมาย บันทึกและตรวจสอบข้อมูลในระบบ HDC และประสาน รพ.สต. ในสังกัด",
    "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:info"
   }
  ],
@@ -148,8 +148,8 @@
   {
    "key": "line",
    "title": "แนะนำการใช้งานไลน์ Follow Up EPI Ubon",
-   "desc": "ลงทะเบียน บันทึกนัด รับแจ้งเตือน ถามเรื่องวัคซีน และลบข้อมูลได้เอง",
-   "duration": "1:41",
+   "desc": "ลงทะเบียน บันทึกนัด รับแจ้งเตือน ถามเรื่องวัคซีน และลบข้อมูลได้เอง (มีเสียงบรรยาย)",
+   "duration": "1:46",
    "audience": "ผู้ปกครอง",
    "welcome": true,
    "kw": [
@@ -157,8 +157,8 @@
     "วิธีใช้",
     "แนะนำการใช้งาน"
    ],
-   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-line-followup.mp4",
-   "poster": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-line-followup.jpg"
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-line-followup.mp4?v=20261118",
+   "poster": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-line-followup.jpg?v=20261118"
   },
   {
    "key": "pcv",
@@ -172,14 +172,14 @@
     "นิวโมคอคคัส",
     "ปอดอักเสบ"
    ],
-   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-pcv-parent.mp4",
-   "poster": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-pcv-parent.jpg"
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-pcv-parent.mp4?v=1",
+   "poster": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-pcv-parent.jpg?v=1"
   },
   {
    "key": "all",
    "title": "วัคซีนทุกวัย ฟรีสำหรับคนไทย",
-   "desc": "ตั้งแต่แรกเกิด วัยเรียน HPV หญิงตั้งครรภ์ ไข้หวัดใหญ่ พิษสุนัขบ้า",
-   "duration": "4:03",
+   "desc": "ตั้งแต่แรกเกิด วัยเรียน HPV หญิงตั้งครรภ์ ไข้หวัดใหญ่ พิษสุนัขบ้า (คำบรรยายบนจอ พร้อมดนตรีประกอบ)",
+   "duration": "4:02",
    "audience": "ประชาชนทั่วไป",
    "welcome": false,
    "kw": [
@@ -189,8 +189,8 @@
     "ไข้หวัดใหญ่",
     "พิษสุนัขบ้า"
    ],
-   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-vaccine-all.mp4",
-   "poster": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-vaccine-all.jpg"
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-vaccine-all.mp4?v=20261118",
+   "poster": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-vaccine-all.jpg?v=20261118"
   },
   {
    "key": "dashboard",
@@ -203,93 +203,40 @@
     "แดชบอร์ด",
     "dashboard"
    ],
-   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-dashboard-guide.mp4",
-   "poster": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-dashboard-guide.jpg"
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-dashboard-guide.mp4?v=1",
+   "poster": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-dashboard-guide.jpg?v=1"
   }
  ],
  "cov_note": "HDC ปีงบประมาณ 2569 ระดับจังหวัด (ประมวลผล 2 พ.ย. 2569)",
  "keys": {
-  "rubella": {
+  "hepb": {
    "guides": [
-    5,
-    6
+    7
    ],
    "cov": [
     {
-     "label": "MMR 9 เดือน",
-     "pct": 88.6
+     "label": "HBV แรกเกิด",
+     "pct": 92.7
     },
     {
-     "label": "MMR 1 ปี 6 เดือน",
-     "pct": 97.4
+     "label": "HBV 6 เดือน",
+     "pct": 90.4
     }
    ]
   },
-  "tb": {
+  "diphtheria": {
    "cov": [
     {
-     "label": "BCG แรกเกิด",
-     "pct": 97.6
-    }
-   ]
-  },
-  "hib": {
-   "cov": [
-    {
-     "label": "Hib 6 เดือน",
-     "pct": 83.6
-    }
-   ]
-  },
-  "je": {
-   "cov": [
-    {
-     "label": "LAJE/JE 1 ปี",
-     "pct": 91.6
+     "label": "DTP 6 เดือน",
+     "pct": 90.1
     },
     {
-     "label": "LAJE/JE 2 ปี 6 เดือน",
-     "pct": 79.2
-    }
-   ]
-  },
-  "hpv": {
-   "guides": [
-    4
-   ]
-  },
-  "dengue": {
-   "sit": {
-    "cases": "21620",
-    "deaths": "31",
-    "period": "1 ม.ค.–19 ส.ค. 2569",
-    "source": "กรมควบคุมโรค แถลง ส.ค. 2569"
-   }
-  },
-  "rsv": {
-   "sit": {
-    "cases": "5683",
-    "deaths": "0",
-    "period": "1 ม.ค.–15 ส.ค. 2569",
-    "source": "WESR ปีที่ 57 ฉบับที่ 8 (ส.ค. 2569)"
-   }
-  },
-  "polio": {
-   "guides": [
-    9
-   ],
-   "cov": [
-    {
-     "label": "IPV 4 เดือน",
-     "pct": 81.5
+     "label": "DTP 1 ปี 6 เดือน",
+     "pct": 95.0
     },
     {
-     "label": "OPV 6 เดือน",
-     "pct": 88.6
-    },
-    {
-     "label": "OPV 4 ปี",
-     "pct": 81.2
+     "label": "DTP 4 ปี",
+     "pct": 81.1
     }
    ]
   },
@@ -315,29 +262,13 @@
     "source": "WESR: สถานการณ์โรคไอกรน พ.ศ. 2568"
    }
   },
-  "rota": {
-   "cov": [
-    {
-     "label": "Rota (ครบถ้วนตามเกณฑ์)",
-     "pct": 77.5
-    }
-   ]
-  },
-  "diphtheria": {
-   "cov": [
-    {
-     "label": "DTP 6 เดือน",
-     "pct": 90.1
-    },
-    {
-     "label": "DTP 1 ปี 6 เดือน",
-     "pct": 95.0
-    },
-    {
-     "label": "DTP 4 ปี",
-     "pct": 81.1
-    }
-   ]
+  "flu": {
+   "sit": {
+    "cases": "137276",
+    "deaths": "8",
+    "period": "1 ม.ค.–9 มี.ค. 2569",
+    "source": "กองระบาดวิทยา (DDS) แถลง 11 มี.ค. 2569"
+   }
   },
   "pcv": {
    "guides": [
@@ -363,6 +294,29 @@
     }
    ]
   },
+  "mumps": {
+   "guides": [
+    8
+   ],
+   "cov": [
+    {
+     "label": "MMR 9 เดือน",
+     "pct": 88.6
+    },
+    {
+     "label": "MMR 1 ปี 6 เดือน",
+     "pct": 97.4
+    }
+   ]
+  },
+  "rsv": {
+   "sit": {
+    "cases": "5683",
+    "deaths": "0",
+    "period": "1 ม.ค.–15 ส.ค. 2569",
+    "source": "WESR ปีที่ 57 ฉบับที่ 8 (ส.ค. 2569)"
+   }
+  },
   "covid": {
    "sit": {
     "cases": "99691",
@@ -370,6 +324,34 @@
     "period": "1 ม.ค.–31 ส.ค. 2569",
     "source": "กรมควบคุมโรค แถลง 1 ก.ย. 2569"
    }
+  },
+  "rota": {
+   "cov": [
+    {
+     "label": "Rota (ครบถ้วนตามเกณฑ์)",
+     "pct": 77.5
+    }
+   ]
+  },
+  "dengue": {
+   "sit": {
+    "cases": "21620",
+    "deaths": "31",
+    "period": "1 ม.ค.–19 ส.ค. 2569",
+    "source": "กรมควบคุมโรค แถลง ส.ค. 2569"
+   }
+  },
+  "je": {
+   "cov": [
+    {
+     "label": "LAJE/JE 1 ปี",
+     "pct": 91.6
+    },
+    {
+     "label": "LAJE/JE 2 ปี 6 เดือน",
+     "pct": 79.2
+    }
+   ]
   },
   "tetanus": {
    "cov": [
@@ -384,6 +366,41 @@
     {
      "label": "DTP 4 ปี",
      "pct": 81.1
+    }
+   ]
+  },
+  "rubella": {
+   "guides": [
+    5,
+    6
+   ],
+   "cov": [
+    {
+     "label": "MMR 9 เดือน",
+     "pct": 88.6
+    },
+    {
+     "label": "MMR 1 ปี 6 เดือน",
+     "pct": 97.4
+    }
+   ]
+  },
+  "polio": {
+   "guides": [
+    9
+   ],
+   "cov": [
+    {
+     "label": "IPV 4 เดือน",
+     "pct": 81.5
+    },
+    {
+     "label": "OPV 6 เดือน",
+     "pct": 88.6
+    },
+    {
+     "label": "OPV 4 ปี",
+     "pct": 81.2
     }
    ]
   },
@@ -409,43 +426,26 @@
     "source": "กระทรวงสาธารณสุข (ข่าว 7 ต.ค. 2569)"
    }
   },
-  "hepb": {
-   "guides": [
-    7
-   ],
+  "tb": {
    "cov": [
     {
-     "label": "HBV แรกเกิด",
-     "pct": 92.7
-    },
-    {
-     "label": "HBV 6 เดือน",
-     "pct": 90.4
+     "label": "BCG แรกเกิด",
+     "pct": 97.6
     }
    ]
   },
-  "mumps": {
-   "guides": [
-    8
-   ],
+  "hib": {
    "cov": [
     {
-     "label": "MMR 9 เดือน",
-     "pct": 88.6
-    },
-    {
-     "label": "MMR 1 ปี 6 เดือน",
-     "pct": 97.4
+     "label": "Hib 6 เดือน",
+     "pct": 83.6
     }
    ]
   },
-  "flu": {
-   "sit": {
-    "cases": "137276",
-    "deaths": "8",
-    "period": "1 ม.ค.–9 มี.ค. 2569",
-    "source": "กองระบาดวิทยา (DDS) แถลง 11 มี.ค. 2569"
-   }
+  "hpv": {
+   "guides": [
+    4
+   ]
   }
  }
 }

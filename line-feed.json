@@ -1,8 +1,15 @@
 {
- "updated": "2026-11-18",
+ "updated": "2026-11-19",
  "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/",
  "privacy": "ข้อมูลสาธารณะระดับภาพรวม ไม่มีข้อมูลส่วนบุคคล",
  "news": [
+  {
+   "date": "2026-11-19",
+   "tag": "สื่อ",
+   "title": "อินโฟกราฟิกถาม–ตอบและตารางนัด PCV 4 แผ่น ตามคำแนะนำกรมควบคุมโรค",
+   "body": "ถาม–ตอบสำหรับผู้ปกครองและผู้ให้บริการ ตารางนัดเด็กมาตามนัดและมาล่าช้า และกรณีผู้ปกครองขอแยกนัด พร้อมปรับคู่มือ PCV…",
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:pcvqa"
+  },
   {
    "date": "2026-11-18",
    "tag": "สื่อ",
@@ -37,13 +44,6 @@
    "title": "สำนักงานจังหวัดอุบลราชธานี ร่วมกับ สสจ.อุบลราชธานี ชวนพาบุตรหลานรับวัคซีน PCV",
    "body": "อินโฟกราฟิก 2 แผ่น แนวทางการให้บริการวัคซีน PCV สำหรับหน่วยบริการ และเชิญชวนผู้ปกครองพาบุตรหลานอายุไม่เกิน 2 ปี รับวัคซีน PCV…",
    "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:gov"
-  },
-  {
-   "date": "2026-11-13",
-   "tag": "ผลงาน",
-   "title": "ข่าวกิจกรรม รพ.ตระการพืชผล Kick Off ให้บริการวัคซีน PCV",
-   "body": "โรงพยาบาลตระการพืชผล นำโดยผู้อำนวยการ รองผู้อำนวยการ และกุมารแพทย์ Kick Off ให้บริการวัคซีน PCV10 (Pneumosil) ในเด็กอายุ 2–12 เดือน…",
-   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/#op:act"
   }
  ],
  "guides": [
@@ -175,8 +175,8 @@
     "ฟ้อง",
     "ผู้ให้บริการ"
    ],
-   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-qa-staff.mp4?v=20261118",
-   "poster": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-qa-staff.jpg?v=20261118"
+   "url": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-qa-staff.mp4?v=20261119",
+   "poster": "https://aomudomma-creator.github.io/vaccine-dashboard-EPI-UBON/vid-qa-staff.jpg?v=20261119"
   },
   {
    "key": "qapcv",
@@ -243,63 +243,19 @@
  ],
  "cov_note": "HDC ปีงบประมาณ 2569 ระดับจังหวัด (ประมวลผล 2 พ.ย. 2569)",
  "keys": {
-  "pertussis": {
-   "cov": [
-    {
-     "label": "DTP 6 เดือน",
-     "pct": 90.1
-    },
-    {
-     "label": "DTP 1 ปี 6 เดือน",
-     "pct": 95.0
-    },
-    {
-     "label": "DTP 4 ปี",
-     "pct": 81.1
-    }
-   ],
+  "dengue": {
    "sit": {
-    "cases": "243",
-    "deaths": "2",
-    "period": "ปี 2568 ทั้งปี",
-    "source": "WESR: สถานการณ์โรคไอกรน พ.ศ. 2568"
+    "cases": "21620",
+    "deaths": "31",
+    "period": "1 ม.ค.–19 ส.ค. 2569",
+    "source": "กรมควบคุมโรค แถลง ส.ค. 2569"
    }
   },
-  "mumps": {
-   "guides": [
-    8
-   ],
+  "rota": {
    "cov": [
     {
-     "label": "MMR 9 เดือน",
-     "pct": 88.6
-    },
-    {
-     "label": "MMR 1 ปี 6 เดือน",
-     "pct": 97.4
-    }
-   ]
-  },
-  "tb": {
-   "cov": [
-    {
-     "label": "BCG แรกเกิด",
-     "pct": 97.6
-    }
-   ]
-  },
-  "hepb": {
-   "guides": [
-    7
-   ],
-   "cov": [
-    {
-     "label": "HBV แรกเกิด",
-     "pct": 92.7
-    },
-    {
-     "label": "HBV 6 เดือน",
-     "pct": 90.4
+     "label": "Rota (ครบถ้วนตามเกณฑ์)",
+     "pct": 77.5
     }
    ]
   },
@@ -325,6 +281,110 @@
     "source": "กระทรวงสาธารณสุข (ข่าว 7 ต.ค. 2569)"
    }
   },
+  "je": {
+   "cov": [
+    {
+     "label": "LAJE/JE 1 ปี",
+     "pct": 91.6
+    },
+    {
+     "label": "LAJE/JE 2 ปี 6 เดือน",
+     "pct": 79.2
+    }
+   ]
+  },
+  "mumps": {
+   "guides": [
+    8
+   ],
+   "cov": [
+    {
+     "label": "MMR 9 เดือน",
+     "pct": 88.6
+    },
+    {
+     "label": "MMR 1 ปี 6 เดือน",
+     "pct": 97.4
+    }
+   ]
+  },
+  "hib": {
+   "cov": [
+    {
+     "label": "Hib 6 เดือน",
+     "pct": 83.6
+    }
+   ]
+  },
+  "pertussis": {
+   "cov": [
+    {
+     "label": "DTP 6 เดือน",
+     "pct": 90.1
+    },
+    {
+     "label": "DTP 1 ปี 6 เดือน",
+     "pct": 95.0
+    },
+    {
+     "label": "DTP 4 ปี",
+     "pct": 81.1
+    }
+   ],
+   "sit": {
+    "cases": "243",
+    "deaths": "2",
+    "period": "ปี 2568 ทั้งปี",
+    "source": "WESR: สถานการณ์โรคไอกรน พ.ศ. 2568"
+   }
+  },
+  "tetanus": {
+   "cov": [
+    {
+     "label": "DTP 6 เดือน",
+     "pct": 90.1
+    },
+    {
+     "label": "DTP 1 ปี 6 เดือน",
+     "pct": 95.0
+    },
+    {
+     "label": "DTP 4 ปี",
+     "pct": 81.1
+    }
+   ]
+  },
+  "hepb": {
+   "guides": [
+    7
+   ],
+   "cov": [
+    {
+     "label": "HBV แรกเกิด",
+     "pct": 92.7
+    },
+    {
+     "label": "HBV 6 เดือน",
+     "pct": 90.4
+    }
+   ]
+  },
+  "covid": {
+   "sit": {
+    "cases": "99691",
+    "deaths": "15",
+    "period": "1 ม.ค.–31 ส.ค. 2569",
+    "source": "กรมควบคุมโรค แถลง 1 ก.ย. 2569"
+   }
+  },
+  "rsv": {
+   "sit": {
+    "cases": "5683",
+    "deaths": "0",
+    "period": "1 ม.ค.–15 ส.ค. 2569",
+    "source": "WESR ปีที่ 57 ฉบับที่ 8 (ส.ค. 2569)"
+   }
+  },
   "polio": {
    "guides": [
     9
@@ -341,6 +401,38 @@
     {
      "label": "OPV 4 ปี",
      "pct": 81.2
+    }
+   ]
+  },
+  "tb": {
+   "cov": [
+    {
+     "label": "BCG แรกเกิด",
+     "pct": 97.6
+    }
+   ]
+  },
+  "flu": {
+   "sit": {
+    "cases": "137276",
+    "deaths": "8",
+    "period": "1 ม.ค.–9 มี.ค. 2569",
+    "source": "กองระบาดวิทยา (DDS) แถลง 11 มี.ค. 2569"
+   }
+  },
+  "rubella": {
+   "guides": [
+    5,
+    6
+   ],
+   "cov": [
+    {
+     "label": "MMR 9 เดือน",
+     "pct": 88.6
+    },
+    {
+     "label": "MMR 1 ปี 6 เดือน",
+     "pct": 97.4
     }
    ]
   },
@@ -368,45 +460,10 @@
     }
    ]
   },
-  "rsv": {
-   "sit": {
-    "cases": "5683",
-    "deaths": "0",
-    "period": "1 ม.ค.–15 ส.ค. 2569",
-    "source": "WESR ปีที่ 57 ฉบับที่ 8 (ส.ค. 2569)"
-   }
-  },
-  "rubella": {
+  "hpv": {
    "guides": [
-    5,
-    6
-   ],
-   "cov": [
-    {
-     "label": "MMR 9 เดือน",
-     "pct": 88.6
-    },
-    {
-     "label": "MMR 1 ปี 6 เดือน",
-     "pct": 97.4
-    }
+    4
    ]
-  },
-  "flu": {
-   "sit": {
-    "cases": "137276",
-    "deaths": "8",
-    "period": "1 ม.ค.–9 มี.ค. 2569",
-    "source": "กองระบาดวิทยา (DDS) แถลง 11 มี.ค. 2569"
-   }
-  },
-  "dengue": {
-   "sit": {
-    "cases": "21620",
-    "deaths": "31",
-    "period": "1 ม.ค.–19 ส.ค. 2569",
-    "source": "กรมควบคุมโรค แถลง ส.ค. 2569"
-   }
   },
   "diphtheria": {
    "cov": [
@@ -423,63 +480,6 @@
      "pct": 81.1
     }
    ]
-  },
-  "je": {
-   "cov": [
-    {
-     "label": "LAJE/JE 1 ปี",
-     "pct": 91.6
-    },
-    {
-     "label": "LAJE/JE 2 ปี 6 เดือน",
-     "pct": 79.2
-    }
-   ]
-  },
-  "rota": {
-   "cov": [
-    {
-     "label": "Rota (ครบถ้วนตามเกณฑ์)",
-     "pct": 77.5
-    }
-   ]
-  },
-  "hib": {
-   "cov": [
-    {
-     "label": "Hib 6 เดือน",
-     "pct": 83.6
-    }
-   ]
-  },
-  "hpv": {
-   "guides": [
-    4
-   ]
-  },
-  "tetanus": {
-   "cov": [
-    {
-     "label": "DTP 6 เดือน",
-     "pct": 90.1
-    },
-    {
-     "label": "DTP 1 ปี 6 เดือน",
-     "pct": 95.0
-    },
-    {
-     "label": "DTP 4 ปี",
-     "pct": 81.1
-    }
-   ]
-  },
-  "covid": {
-   "sit": {
-    "cases": "99691",
-    "deaths": "15",
-    "period": "1 ม.ค.–31 ส.ค. 2569",
-    "source": "กรมควบคุมโรค แถลง 1 ก.ย. 2569"
-   }
   }
  }
 }

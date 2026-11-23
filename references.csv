@@ -1,0 +1,27 @@
+ref_id,kind,citation,topics
+DDC_STD,ราชการ,กองโรคติดต่อทั่วไป กรมควบคุมโรค. มาตรฐานการดำเนินงานสร้างเสริมภูมิคุ้มกันโรค (ม.ค. 2568),"วัณโรค BCG, ตับอักเสบบี, คอตีบ, บาดทะยัก, ฮิบ Hib, โปลิโอ, โรต้า, หัด, คางทูม, หัดเยอรมัน, ไข้สมองอักเสบเจอี"
+DDC_IPV,ราชการ,กระทรวงสาธารณสุข. คำแนะนำการให้วัคซีนโปลิโอสูตร 2 IPV + 3 OPV,โปลิโอ
+DDC_PCV70,ราชการ,กองโรคติดต่อทั่วไป กรมควบคุมโรค. แนวทางการให้วัคซีน PCV ปีงบประมาณ 2570 (ต.ค. 2569),PCV นิวโมค็อกคัส
+DDC_PCVREC,ราชการ,กรมควบคุมโรค และสมาคมโรคติดเชื้อในเด็กแห่งประเทศไทย. คำแนะนำการให้บริการวัคซีน PCV และเด็กที่มารับบริการล่าช้า (ต.ค. 2569),PCV นิวโมค็อกคัส
+NHSO_PCV,ราชการ,ประกาศคณะกรรมการหลักประกันสุขภาพแห่งชาติ ฉบับที่ 11 (บรรจุ PCV มีผล 1 ต.ค. 2569),PCV นิวโมค็อกคัส
+DDC_FLU69,ราชการ,กองโรคติดต่อทั่วไป กรมควบคุมโรค. แนวทางการให้บริการวัคซีนไข้หวัดใหญ่ตามฤดูกาล ปี 2569,ไข้หวัดใหญ่
+DDC_HPV,ราชการ,กรมควบคุมโรค. แนวทางการให้บริการวัคซีนป้องกันการติดเชื้อไวรัสเอชพีวี (HPV) ปีงบประมาณ 2570 (ฉบับตุลาคม 2569),HPV
+DDC_AP,ราชการ,กองโรคติดต่อทั่วไป กรมควบคุมโรค. แนวทางการให้วัคซีนไอกรนชนิดไร้เซลล์ (aP) ในหญิงตั้งครรภ์ (ม.ค. 2567),ไอกรน
+DOE,ราชการ,กองระบาดวิทยา กรมควบคุมโรค. ระบบเฝ้าระวังโรคดิจิทัล (DDS) และรายงาน WESR,"คอตีบ, ไอกรน, โปลิโอ, หัด, ไข้หวัดใหญ่, โควิด 19, ไข้เลือดออก, RSV"
+PIDST,สมาคมวิชาชีพ,สมาคมโรคติดเชื้อในเด็กแห่งประเทศไทย. ตารางการให้วัคซีนในเด็กไทย (วัคซีนพื้นฐานและวัคซีนทางเลือก),"วัณโรค BCG, ตับอักเสบบี, ฮิบ Hib, คางทูม, หัดเยอรมัน, ไข้สมองอักเสบเจอี, อีสุกอีใส"
+IDAT,สมาคมวิชาชีพ,สมาคมโรคติดเชื้อแห่งประเทศไทย. คำแนะนำการให้วัคซีนป้องกันโรคสำหรับผู้ใหญ่และผู้สูงอายุ,"บาดทะยัก, โควิด 19"
+WHO_PCV25,องค์การอนามัยโลก,"World Health Organization. Pneumococcal conjugate vaccines in infants and children aged <5 years: WHO position paper, Sept 2025. Wkly Epidemiol Rec. 2025;100:411–437",PCV นิวโมค็อกคัส
+PHONG22,งานวิจัย,"Phongsamart W, et al. Streptococcus pneumoniae causing invasive diseases in children and adults in central Thailand, 2012–2016. Vaccines. 2022;10(8)",PCV นิวโมค็อกคัส
+GAMIL21,งานวิจัย,"Gamil A, et al. Pneumococcal disease in Thailand. Int J Infect Dis. 2021;102:429–436",PCV นิวโมค็อกคัส
+HPV_TH24,งานวิจัย,"Single-dose or 2-dose bivalent HPV vaccine in schoolgirls in Thailand: vaccine effectiveness 2 and 4 years after vaccination (IVI study, Udon Thani & Buri Ram). J Natl Cancer Inst Monogr. 2024",HPV
+ROTA23,งานวิจัย,"Charoenwat B, et al. Impact of rotavirus vaccination on acute diarrhea in Thai children under 5 years. BMC Public Health. 2023;23:2109",โรต้า
+ROTA21,งานวิจัย,"Rochanathimoke O, et al. Economic evaluation of rotavirus vaccination in Thailand. Expert Rev Pharmacoecon Outcomes Res. 2021;21(4):811–819",โรต้า
+COV22,งานวิจัย,"Intawong K, et al. Effectiveness of heterologous third and fourth dose COVID-19 vaccine schedules in Thailand. Lancet Reg Health Southeast Asia. 2022;10:100121",โควิด 19
+COV23,งานวิจัย,"Intawong K, et al. Heterologous booster vaccines reduce severity and mortality in COVID-19 during omicron predominance in Thailand. J Microbiol Immunol Infect. 2023",โควิด 19
+RSV_TH22,งานวิจัย,"Sitthikarnkha P, et al. Burden of RSV-related acute lower respiratory tract infection in hospitalized Thai children: a 6-year national data analysis. Children. 2022;9(12):1990",RSV
+RSV_MAT23,งานวิจัย,"Kampmann B, et al. Bivalent prefusion F vaccine in pregnancy to prevent RSV illness in infants. N Engl J Med. 2023;388:1451–1464",RSV
+RSV_MAB22,งานวิจัย,"Hammitt LL, et al. Nirsevimab for prevention of RSV in healthy late-preterm and term infants. N Engl J Med. 2022;386:837–846",RSV
+DEN22,งานวิจัย,"Rivera L, et al. Three-year efficacy and safety of Takeda's dengue vaccine candidate (TAK-003). Clin Infect Dis. 2022;75(1):107–117",ไข้เลือดออก
+DEN24,งานวิจัย,"Tricou V, et al. Long-term efficacy and safety of a tetravalent dengue vaccine (TAK-003): 4.5-year results from a phase 3 trial. Lancet Glob Health. 2024;12(2):e257–e270",ไข้เลือดออก
+TDAP24,งานวิจัย,"วิหารทอง ป, และคณะ. การนำร่องให้วัคซีน Tdap สำหรับหญิงตั้งครรภ์ จังหวัดพัทลุง. วารสารควบคุมโรค. 2567;50(4)",ไอกรน
+HDC_UBON,ราชการ,HDC กระทรวงสาธารณสุข (ข้อมูลจังหวัดอุบลราชธานี),"หัด, ไข้หวัดใหญ่"

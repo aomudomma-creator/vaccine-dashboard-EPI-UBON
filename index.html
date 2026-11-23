@@ -2802,12 +2802,12 @@ const statLabel = (id) => {
 function drawUsage() {
   const el = document.querySelector('.vx [data-draw="usage"]'); if (!el) return;
   const ids = {}; Object.entries(VX.counts).forEach(([k, n]) => { const [id, act] = k.split('|'); ids[id] = ids[id] || { view: 0, download: 0 }; ids[id][act] = (ids[id][act] || 0) + n; });
-  const CAT = /^(tab|op|vid):/; const all = Object.entries(ids), items = all.filter(([id]) => !CAT.test(id)), tabs = all.filter(([id]) => CAT.test(id));
+  const all = Object.entries(ids), items = all.filter(([id]) => !/^(tab|f):/.test(id)), tabs = all.filter(([id]) => id.startsWith('tab:'));
   const V = d3.sum(items, (x) => x[1].view), D = d3.sum(items, (x) => x[1].download), T = d3.sum(tabs, (x) => x[1].view);
   const R = VX.rating && VX.rating.n ? VX.rating : null;
   const k = (ic, v, l, c, b, extra) => { const d = mk('div', 'us-k'); d.style.setProperty('--uc', c); d.style.setProperty('--ub', b); d.append(mk('div', 'ic', ic), mk('div', 'v', v), mk('div', 'l', l)); if (extra) d.append(extra); return d; };
   const stars = mk('div', 'us-stars'); const avg = R ? R.avg : 0; for (let i = 1; i <= 5; i++) stars.append(mk('span', i <= Math.round(avg) ? 'on' : 'off', '★'));
-  const kp = mk('div', 'us-kpi'); kp.append(k('👁', VX.int(V), 'ครั้งที่เปิดดูเอกสารและความรู้', '#1F7BC1', '#E3F2FC'), k('⬇', VX.int(D), 'ครั้งที่ดาวน์โหลด', '#138A5A', '#E3F6EC'), k('🧭', VX.int(T), 'ครั้งที่เข้าดูเมนูและหมวดต่างๆ', '#5B6FD8', '#ECEAFB'), k('⭐', R ? avg.toFixed(2) : '—', R ? 'คะแนนเฉลี่ย จาก ' + R.n + ' คน' : 'ยังไม่มีผู้ให้คะแนน', '#B7791F', '#FFF4D1', stars));
+  const kp = mk('div', 'us-kpi'); kp.append(k('👁', VX.int(V), 'ครั้งที่เปิดดูเอกสารและความรู้', '#1F7BC1', '#E3F2FC'), k('⬇', VX.int(D), 'ครั้งที่ดาวน์โหลด', '#138A5A', '#E3F6EC'), k('🧭', VX.int(T), 'ครั้งที่เข้าดูเมนูต่างๆ', '#5B6FD8', '#ECEAFB'), k('⭐', R ? avg.toFixed(2) : '—', R ? 'คะแนนเฉลี่ย จาก ' + R.n + ' คน' : 'ยังไม่มีผู้ให้คะแนน', '#B7791F', '#FFF4D1', stars));
   const top = (list, key) => { const L = mk('div', 'hb-list'); const mx = d3.max(list, (x) => x[1][key]) || 1;
     list.slice(0, 6).forEach(([id, c]) => { const [ty, nm] = statLabel(id); const r = mk('div', 'hb-row'); const bar = mk('div', 'bar'); const i = mk('i'); i.style.width = (c[key] / mx * 100) + '%'; i.style.setProperty('--bc', key === 'download' ? '#138A5A' : '#1F7BC1'); bar.append(i); r.append(mk('span', '', ty.split(' ')[0] + ' ' + nm), bar, mk('b', '', VX.int(c[key]))); L.append(r); });
     return list.length ? L : mk('p', 'note', 'ยังไม่มีข้อมูล'); };
@@ -2830,8 +2830,8 @@ function drawStatsPanel() {
   try { drawUsage(); } catch (e) { console.error(e); }
   const card = document.querySelector('.vx .stat-card'); if (!card) return;
   const ids = {}; Object.entries(VX.counts).forEach(([k, n]) => { const [id, act] = k.split('|'); ids[id] = ids[id] || { view: 0, download: 0 }; ids[id][act] = (ids[id][act] || 0) + n; });
-  const list = Object.entries(ids).filter(([id]) => !/^(tab|vid):/.test(id)).sort((a, b) => (b[1].view + b[1].download) - (a[1].view + a[1].download));
-  const it2 = list.filter(([id]) => !/^(op|vid):/.test(id)); const tv = d3.sum(it2, (x) => x[1].view), td2 = d3.sum(it2, (x) => x[1].download);
+  const list = Object.entries(ids).filter(([id]) => !id.startsWith('tab:')).sort((a, b) => (b[1].view + b[1].download) - (a[1].view + a[1].download));
+  const it2 = list.filter(([id]) => !id.startsWith('f:')); const tv = d3.sum(it2, (x) => x[1].view), td2 = d3.sum(it2, (x) => x[1].download);
   card.querySelector('.st-note').textContent = (VX.STATS_URL ? 'สถิติรวมจากผู้ใช้ทุกคน' : 'ตอนนี้แสดงสถิติของเครื่องนี้เท่านั้น (ยังไม่ได้เชื่อมระบบเก็บสถิติกลาง)') + ' · เปิดดูรวม ' + VX.int(tv) + ' ครั้ง · ดาวน์โหลดรวม ' + VX.int(td2) + ' ครั้ง';
   const t = mk('table', 'ds-tbl stats-tbl'); const h = mk('tr'); h.append(mk('th', '', 'ประเภท'), mk('th', '', 'รายการ'), mk('th', 'n', '👁 เปิดดู'), mk('th', 'n', '⬇ ดาวน์โหลด')); t.append(h);
   list.forEach(([id, c]) => { const [ty, nm] = statLabel(id); const tr = mk('tr'); tr.append(mk('td', '', ty), mk('td', '', nm), mk('td', 'n', VX.int(c.view)), mk('td', 'n', VX.int(c.download))); t.append(tr); });

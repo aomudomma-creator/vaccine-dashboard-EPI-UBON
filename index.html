@@ -1035,6 +1035,13 @@ window.dash = (() => {
 .vx .sit-hd { margin: var(--cds-gap-lg) 0 10px; }
 .vx .sit-hd h2 { margin-bottom: 2px; }
 .vx .nat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.vx .cat-media { background: linear-gradient(180deg,#F3F9FF,#fff 160px); border: 1.5px solid #CFE3F4; margin-bottom: var(--cds-gap-lg, 18px); }
+.vx .cat-media .cm-hd h2 { margin-bottom: 2px; }
+.vx .cm-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.vx .cm-chips button { font: inherit; cursor: pointer; border: 1.5px solid #BFD7EC; background: #fff; color: #1F5F92; border-radius: 999px; padding: 6px 14px; font-weight: 700; font-size: .92rem; }
+.vx .cm-chips button.on { background: #1F6FB2; color: #fff; border-color: #1F6FB2; box-shadow: 0 6px 14px -8px #1F6FB2; }
+.vx .cm-open { font: inherit; cursor: pointer; border: 0; background: #EAF3FB; color: #1F5F92; border-radius: 12px; padding: 8px 14px; font-weight: 700; margin-top: 10px; }
+.vx .cm-v .op-tools .printbtn { display: none; }
 </style>
 <div class="vx" lang="th">
   <div class="topbar">
@@ -2780,6 +2787,47 @@ VX.collectLabels = () => {
   });
   document.querySelectorAll('.vx .op-btns a[href]').forEach((a) => { const h = a.getAttribute('href'); if (FILE_RE.test(h) && !/^https?:/i.test(h)) { const k = 'f:' + fileKey(h); if (!VX.LABEL[k]) VX.LABEL[k] = a.textContent.replace(/^[^\wก-๙]+/, '').trim(); } });
 };
+// ===== สื่อ One Page จัดเก็บซ้ำในเมนูตามหมวดหมู่ (หน้าแรกยังแสดงครบเหมือนเดิม) =====
+VX.OP_CAT = {
+  overview: ['summary', 'kpi', 'cov', 'plan'],
+  news: ['act', 'gov', 'meet', 'pcvin'],
+  epi: ['pcvqa', 'pcvin', 'info', 'pcv', 'video'],
+  coverage: ['cov', 'kpi'],
+  followup: ['kpi', 'plan', 'cov'],
+  guides: ['pcv', 'pcvqa', 'jhcis', 'aefi', 'meet', 'plan'],
+  knowledge: ['pcvqa', 'video', 'info'],
+  media: ['video', 'info', 'pcvin', 'pcvqa'],
+};
+VX.buildCatMedia = () => {
+  const opk = Object.fromEntries([...document.querySelectorAll('.vx .opk')].map((b) => [b.dataset.v, b]));
+  Object.entries(VX.OP_CAT).forEach(([sec, keys]) => {
+    const host = document.getElementById(sec); if (!host || host.querySelector('.cat-media')) return;
+    const ks = keys.filter((k) => opk[k] && document.querySelector('.vx .op-v[data-v="' + k + '"]')); if (!ks.length) return;
+    const card = mk('div', 'card cat-media'); const hd = mk('div', 'cm-hd');
+    hd.append(mk('h2', '', '📂 สื่อ อินโฟกราฟิก และข่าวในหมวดนี้'), mk('p', 'note', 'รวมสื่อจากหน้าแรกที่เกี่ยวข้องกับเมนูนี้ กดหัวข้อเพื่อดู แตะภาพเพื่อขยาย ดาวน์โหลด PDF หรือเล่นคลิปได้ทันที'));
+    const chips = mk('div', 'cm-chips'), body = mk('div', 'cm-body');
+    const panels = ks.map((k, i) => {
+      const src = document.querySelector('.vx .op-v[data-v="' + k + '"]');
+      const t = opk[k].querySelector('b, strong, .t') || opk[k]; const title = (t.textContent || '').replace('ใหม่', '').trim();
+      const p = mk('div', 'cm-p'); p.hidden = i > 0;
+      if (k === 'summary') {
+        const a = mk('button', 'cm-open', '📊 เปิดสรุปผลงานภาพรวม (One Page A4) ในหน้าแรก →'); a.type = 'button'; a.onclick = () => VX.openOp('summary'); p.append(a);
+      } else {
+        const c = src.cloneNode(true); c.hidden = false; c.removeAttribute('data-v'); c.className = 'cm-v';
+        c.querySelectorAll('[id]').forEach((x) => x.removeAttribute('id')); c.querySelectorAll('[data-print]').forEach((x) => x.remove());
+        c.querySelectorAll('.item-stat').forEach((x) => x.remove());
+        const go = mk('button', 'cm-open', '↗ ดูหัวข้อนี้ในหน้าแรก'); go.type = 'button'; go.onclick = () => VX.openOp(k);
+        p.append(c, go);
+      }
+      const ch = mk('button', i ? '' : 'on', (opk[k].querySelector('span.i') ? opk[k].querySelector('span.i').textContent.trim() + ' ' : '') + title); ch.type = 'button';
+      ch.onclick = () => { chips.querySelectorAll('button').forEach((b) => b.classList.toggle('on', b === ch)); panels.forEach((x) => { x.hidden = x !== p; }); if (VX.track) VX.track('cat:' + sec + ':' + k, 'view'); };
+      chips.append(ch); body.append(p); return p;
+    });
+    card.append(hd, chips, body);
+    const first = host.querySelector(':scope > .sec-h'); if (first) first.after(card); else host.prepend(card);
+  });
+};
+try { VX.buildCatMedia(); } catch (e) { console.error(e); }
 setTimeout(() => { try { VX.collectLabels(); VX.paintStats(document); drawStatsPanel(); } catch (e) { console.error(e); } }, 600);
 const statLabel = (id) => {
   const [type, key] = id.split(/:(.+)/);
@@ -2793,6 +2841,7 @@ const statLabel = (id) => {
   if (type === 'f') { const ex = (key.split('.').pop() || '').toLowerCase(); const ty = ex === 'mp4' ? '🎬 คลิป' : ex === 'pdf' ? '📄 PDF' : /^(jpe?g|png|webp)$/.test(ex) ? (/^op-|^pcv-|^g-/.test(key) ? '🖼️ ภาพ/อินโฟกราฟิก' : '🖼️ ภาพ') : '📎 ไฟล์'; return [ty, VX.LABEL[id] || key]; }
   if (type === 'vid') return ['🎬 คลิป (หมวด)', VX.LABEL[id] || key];
   if (type === 'map') return ['🗺️ แผนที่โรค', key];
+  if (type === 'cat') return ['📂 สื่อในเมนู', key.replace(':', ' › ')];
   if (type === 'an') return ['🔎 วิเคราะห์โรค', key];
   if (type === 'feed') return ['📰 ข่าว', key];
   if (type === 'tab') return ['🧭 เมนู', key]; return ['', id];

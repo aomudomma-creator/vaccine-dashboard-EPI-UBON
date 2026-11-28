@@ -1056,6 +1056,7 @@ window.dash = (() => {
   </div>
   <nav class="tabs nb-off" role="tablist" aria-label="หน้าในแดชบอร์ด">
     <button class="tab" role="tab" data-tab="home" aria-selected="true"><span class="ti">🏠</span>หน้าแรก</button>
+    <button class="tab" role="tab" data-tab="tools" aria-selected="false"><span class="ti">🧰</span>เครื่องมือ</button>
     <button class="tab" role="tab" data-tab="home" data-scroll="awards" aria-selected="false"><span class="ti">🏆</span>รางวัล</button>
     <button class="tab" role="tab" data-tab="home" data-scroll="district" aria-selected="false"><span class="ti">📍</span>ผลงานรายอำเภอ</button>
     <button class="tab" role="tab" data-tab="overview" aria-selected="false"><span class="ti">📊</span>ภาพรวมข้อมูล</button>
@@ -1757,6 +1758,14 @@ window.dash = (() => {
   </section>
 
 
+
+  <section id="tools" class="page" hidden>
+    <div class="sec-h"><h2>🧰 เครื่องมือสำหรับผู้ปฏิบัติงาน</h2><p class="note">รวมเครื่องมือที่ใช้บ่อยไว้ในที่เดียว กดเลือกเครื่องมือ เพื่อเปิดใช้งานด้านล่าง หรือดาวน์โหลดไฟล์ได้ทันที ทุกเครื่องมือไม่เก็บข้อมูลส่วนบุคคล</p>
+      <div class="tl-grid"><button type="button" class="tl-t" data-tl="vcalc"><span class="tl-i">🗓️</span><b>คำนวณวันนัดรับวัคซีน</b><small>ตามเกณฑ์ และกรณีมาล่าช้า</small></button><button type="button" class="tl-t" data-tl="screen"><span class="tl-i">📋</span><b>แบบคัดกรองก่อนรับวัคซีน</b><small>3 แบบ และข้อพิจารณาเจ้าหน้าที่</small></button><button type="button" class="tl-t" data-tl="vcard"><span class="tl-i">🩺</span><b>การ์ดวัคซีน 13 ชนิด</b><small>เช็กลิสต์เจ้าหน้าที่ · คำแนะนำผู้ปกครอง</small></button><button type="button" class="tl-t" data-tl="video"><span class="tl-i">🎬</span><b>คลิปความรู้</b><small>ผู้ปกครอง และเจ้าหน้าที่</small></button><button type="button" class="tl-t" data-tl="info"><span class="tl-i">🖼️</span><b>อินโฟกราฟิก</b><small>PCV · EPI · แนวทาง</small></button><button type="button" class="tl-t" data-tl="pcvqa"><span class="tl-i">❓</span><b>ถาม–ตอบ PCV</b><small>คลายกังวล ผู้ปกครองและผู้ฉีด</small></button><button type="button" class="tl-t" data-tl="jhcis"><span class="tl-i">💻</span><b>บันทึกข้อมูล JHCIS</b><small>รหัสวัคซีน PCV</small></button><button type="button" class="tl-t" data-tl="aefi"><span class="tl-i">⚠️</span><b>ระบบ AEFI-DDC</b><small>ลงทะเบียน และรายงาน</small></button><button type="button" class="tl-t" data-tl="qr"><span class="tl-i">📱</span><b>QR แดชบอร์ด และไลน์</b><small>พิมพ์ติดบอร์ด ส่งต่อได้ทันที</small></button></div>
+      <div class="card tl-dls"><h3>⬇ ดาวน์โหลดด่วน</h3><div class="tl-gs"><div class="tl-g"><h4>แบบคัดกรอง</h4><a class="tl-d" href="screen-general.pdf" download>⬇ ทุกกลุ่มอายุ</a><a class="tl-d" href="screen-child.pdf" download>⬇ เด็กและวัยรุ่น &lt;18 ปี</a><a class="tl-d" href="screen-adult.pdf" download>⬇ อายุ 18 ปีขึ้นไป</a><a class="tl-d" href="screen-consider.pdf" download>⬇ ข้อพิจารณาเจ้าหน้าที่</a></div><div class="tl-g"><h4>การ์ดวัคซีน</h4><a class="tl-d" href="vcard-parent-all-2570.pdf" download>⬇ คำแนะนำผู้ปกครอง A5 (13 ชนิด)</a><a class="tl-d" href="vcard-staff-all-2570.pdf" download>⬇ การ์ดเจ้าหน้าที่ A4</a><a class="tl-d" href="vcard2-all-2570.pdf" download>⬇ ทางเลือก A4 ครึ่งบน/ครึ่งล่าง (16 หน้า)</a></div><div class="tl-g"><h4>ตรวจก่อนฉีด</h4><a class="tl-d" href="vcard2-min.pdf" download>⬇ ตารางอายุและระยะห่างขั้นต่ำ</a><a class="tl-d" href="vcard2-catchup.pdf" download>⬇ หลักการและตารางเก็บตก</a></div><div class="tl-g"><h4>QR</h4><a class="tl-d" href="qr-dashboard-poster.jpg" download>⬇ โปสเตอร์ QR แดชบอร์ด</a><a class="tl-d" href="qr-line-poster.jpg" download>⬇ โปสเตอร์ QR ไลน์</a></div></div></div>
+      <div class="card tl-qr" id="tools-qr"><h3>📱 QR แดชบอร์ด และไลน์ Follow Up EPI Ubon</h3><div class="tl-qrs"><figure><button type="button" class="op-zoom" data-src="qr-dashboard-poster.jpg" data-cap="QR แดชบอร์ดงานวัคซีน"><img src="qr-dashboard-poster.jpg" alt="QR แดชบอร์ดงานวัคซีน" loading="lazy"></button><figcaption><a href="qr-dashboard-poster.jpg" download>⬇ ดาวน์โหลด</a></figcaption></figure><figure><button type="button" class="op-zoom" data-src="qr-line-poster.jpg" data-cap="QR ไลน์ Follow Up EPI Ubon"><img src="qr-line-poster.jpg" alt="QR ไลน์ Follow Up EPI Ubon" loading="lazy"></button><figcaption><a href="qr-line-poster.jpg" download>⬇ ดาวน์โหลด</a></figcaption></figure></div></div>
+    </div>
+  </section>
 
   <section id="refs" class="page" hidden>
     <div class="card">
@@ -3027,6 +3036,7 @@ VX.collectLabels = () => {
 };
 // ===== สื่อ One Page จัดเก็บซ้ำในเมนูตามหมวดหมู่ (หน้าแรกยังแสดงครบเหมือนเดิม) =====
 VX.OP_CAT = {
+  tools: ['vcalc', 'vcard', 'video', 'info', 'pcvqa', 'jhcis', 'aefi'],
   school: ['vcard'],
   mch: ['vcalc', 'vcard'],
   overview: ['summary', 'kpi', 'cov', 'plan'],
@@ -3637,6 +3647,43 @@ if (typeof module !== 'undefined') module.exports = VCALC;
   }, 900);
 })();
 
+</script>
+<style>
+.vx .tl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin:12px 0}
+.vx .tl-t{font:inherit;cursor:pointer;text-align:left;display:grid;grid-template-columns:52px 1fr;grid-template-rows:auto auto;column-gap:12px;align-items:center;padding:12px 14px;border-radius:16px;border:1.5px solid #CFE3F3;background:#fff;box-shadow:0 4px 12px rgba(31,123,193,.08);transition:transform .15s,box-shadow .15s}
+.vx .tl-t:hover,.vx .tl-t.on{transform:translateY(-2px);box-shadow:0 8px 18px rgba(31,123,193,.16);border-color:#1F7BC1}
+.vx .tl-i{grid-row:1/3;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:28px;background:#E3F1FB}
+.vx .tl-t b{font-size:1rem;color:#0D4B78}.vx .tl-t small{font-size:.82rem;color:#5B7488}
+.vx .tl-gs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.vx .tl-g h4{margin:4px 0 6px;color:#1F5F99}.vx .tl-g{display:flex;flex-direction:column;gap:6px}
+.vx .tl-d{display:block;background:#F3F8FC;border:1px solid #D5E6F3;border-radius:10px;padding:7px 10px;text-decoration:none;color:#0D4B78;font-weight:600;font-size:.88rem}
+.vx .tl-d:hover{background:#E3F1FB}
+.vx .tl-qrs{display:flex;flex-wrap:wrap;gap:16px}.vx .tl-qrs figure{margin:0;text-align:center}.vx .tl-qrs img{width:220px;height:auto;border-radius:12px;display:block}
+.vx .tl-qrs .op-zoom{border:0;padding:0;background:none;cursor:zoom-in}
+</style>
+<script>
+// ===== แถบเมนูเครื่องมือ (ชุด31.2) =====
+(() => {
+  const KEYS = ['vcalc', 'vcard', 'video', 'info', 'pcvqa', 'jhcis', 'aefi'];
+  document.addEventListener('click', (e) => {
+    const t = e.target.closest('.vx #tools .tl-t'); if (!t) return;
+    const k = t.dataset.tl, sec = document.getElementById('tools');
+    sec.querySelectorAll('.tl-t').forEach((x) => x.classList.toggle('on', x === t));
+    if (window.VX && VX.track) VX.track('tools:' + k, 'view');
+    if (k === 'qr') { sec.querySelector('.tl-qr').scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
+    const idx = KEYS.indexOf(k === 'screen' ? 'vcard' : k), cm = sec.querySelector('.cat-media'); if (!cm || idx < 0) return;
+    const opk = [...document.querySelectorAll('.vx .opk')].map((b) => b.dataset.v), avail = KEYS.filter((x) => opk.includes(x));
+    const ch = cm.querySelectorAll('.cm-chips button')[avail.indexOf(KEYS[idx])]; if (ch) ch.click();
+    setTimeout(() => {
+      const p = cm.querySelector('.cm-p:not([hidden])');
+      const target = k === 'screen' && p ? (p.querySelector('.vc-sec') || p) : cm;
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 60);
+  });
+  // ย้ายกล่องสื่อของหมวดเครื่องมือไปไว้หลังปุ่มเครื่องมือ
+  const fix = () => { const sec = document.getElementById('tools'), cm = sec && sec.querySelector('.cat-media'), q = sec && sec.querySelector('.tl-qr'); if (cm && q && cm.previousElementSibling !== q) { q.after(cm); const h = cm.querySelector('.cm-hd h2'); if (h) h.textContent = '🧰 เปิดใช้งานเครื่องมือ'; } };
+  setTimeout(fix, 0); setTimeout(fix, 800);
+})();
 </script>
 </body>
 </html>
